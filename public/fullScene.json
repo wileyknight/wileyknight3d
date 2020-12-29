@@ -1,0 +1,11 @@
+{
+	"fullScene": {
+		"version": 1,
+		"id": "fullScene",
+		"name": "1",
+		"kind": "Puppeteer",
+		"mood": null,
+		"postPlaybackMood": null,
+		"duration": 16.625
+	}
+}

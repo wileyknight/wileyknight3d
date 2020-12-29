@@ -1,0 +1,5 @@
+{
+    "glTF.defaultV1Engine": "Three.js",
+    "glTF.defaultV2Engine": "Three.js",
+ "editor.formatOnSave": true
+}

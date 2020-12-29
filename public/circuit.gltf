@@ -1,0 +1,406 @@
+{
+    "asset": {
+        "copyright": "(C)2020 wiley",
+        "generator": "maya2glTF v1.1.0 c13125a0af77",
+        "version": "2.0"
+    },
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0,
+    "nodes": [
+        {
+            "name": "circuit",
+            "children": [
+                1
+            ],
+            "translation": [
+                -0.32473477721214297,
+                121.0858383178711,
+                -115.4694366455078
+            ]
+        },
+        {
+            "name": "circuit:PIV",
+            "mesh": 0,
+            "translation": [
+                0.32473477721214297,
+                -121.0858383178711,
+                115.4694366455078
+            ]
+        }
+    ],
+    "meshes": [
+        {
+            "name": "circuitShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "COLOR_0": 1,
+                        "NORMAL": 2,
+                        "POSITION": 3
+                    },
+                    "indices": 0,
+                    "mode": 4,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "COLOR_0": 5,
+                        "NORMAL": 6,
+                        "POSITION": 7,
+                        "TANGENT": 8,
+                        "TEXCOORD_0": 9
+                    },
+                    "indices": 4,
+                    "mode": 4,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "NORMAL": 11,
+                        "POSITION": 12,
+                        "TANGENT": 13,
+                        "TEXCOORD_0": 14
+                    },
+                    "indices": 10,
+                    "mode": 4,
+                    "material": 0
+                }
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "lambert2",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.4000000059604645,
+                    0.4000000059604645,
+                    0.4000000059604645,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        }
+    ],
+    "accessors": [
+        {
+            "name": "circuitShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 230322,
+            "max": [
+                90737
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "circuitShape#0/vertices/COLOR_0",
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 90738,
+            "max": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "circuitShape#0/vertices/NORMAL",
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 90738,
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#0/vertices/POSITION",
+            "bufferView": 2,
+            "byteOffset": 1088856,
+            "componentType": 5126,
+            "count": 90738,
+            "max": [
+                68.54786682128906,
+                222.41915893554688,
+                -106.42259979248049
+            ],
+            "min": [
+                -180.7427978515625,
+                18.949478149414064,
+                -124.51626586914064
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#1/indices",
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 1626,
+            "max": [
+                675
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "circuitShape#1/vertices/COLOR_0",
+            "bufferView": 1,
+            "byteOffset": 1451808,
+            "componentType": 5126,
+            "count": 676,
+            "max": [
+                0.8392162919044495,
+                0.870588481426239,
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.6352940797805786,
+                0.9176464080810548,
+                0.9999991059303284
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "circuitShape#1/vertices/NORMAL",
+            "bufferView": 2,
+            "byteOffset": 2177712,
+            "componentType": 5126,
+            "count": 676,
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#1/vertices/POSITION",
+            "bufferView": 2,
+            "byteOffset": 2185824,
+            "componentType": 5126,
+            "count": 676,
+            "max": [
+                180.09332275390626,
+                223.22219848632813,
+                -117.5
+            ],
+            "min": [
+                -179.90667724609376,
+                101.35856628417968,
+                -119.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#1/vertices/TANGENT",
+            "bufferView": 1,
+            "byteOffset": 1462624,
+            "componentType": 5126,
+            "count": 676,
+            "max": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -0.0003533929993864149,
+                -1.0,
+                -1.0,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "circuitShape#1/vertices/TEXCOORD_0",
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 676,
+            "max": [
+                0.9980079531669616,
+                0.9980247020721436
+            ],
+            "min": [
+                0.0019920319318771364,
+                0.01037532091140747
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "circuitShape#2/indices",
+            "bufferView": 3,
+            "byteOffset": 3252,
+            "componentType": 5123,
+            "count": 378,
+            "max": [
+                247
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "circuitShape#2/vertices/NORMAL",
+            "bufferView": 2,
+            "byteOffset": 2193936,
+            "componentType": 5126,
+            "count": 248,
+            "max": [
+                1.0,
+                0.9999604225158693,
+                0.9999603629112244
+            ],
+            "min": [
+                -1.0,
+                -0.9999604225158693,
+                -0.9999603629112244
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#2/vertices/POSITION",
+            "bufferView": 2,
+            "byteOffset": 2196912,
+            "componentType": 5126,
+            "count": 248,
+            "max": [
+                -44.88031768798828,
+                28.66936492919922,
+                -118.09485626220705
+            ],
+            "min": [
+                -48.76361083984375,
+                24.775005340576173,
+                -119.38932037353516
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "circuitShape#2/vertices/TANGENT",
+            "bufferView": 1,
+            "byteOffset": 1473440,
+            "componentType": 5126,
+            "count": 248,
+            "max": [
+                1.0,
+                0.9999604225158693,
+                0.7856912016868591,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -0.9999604225158693,
+                -0.7856912016868591,
+                -1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "circuitShape#2/vertices/TEXCOORD_0",
+            "bufferView": 4,
+            "byteOffset": 5408,
+            "componentType": 5126,
+            "count": 248,
+            "max": [
+                0.875,
+                0.9999999403953552
+            ],
+            "min": [
+                0.125,
+                0.0
+            ],
+            "type": "VEC2"
+        }
+    ],
+    "bufferViews": [
+        {
+            "name": "circuit/data/indices-4",
+            "buffer": 0,
+            "byteOffset": 3684688,
+            "byteLength": 921288,
+            "target": 34963
+        },
+        {
+            "name": "circuit/data/vertices-16",
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 1477408,
+            "byteStride": 16,
+            "target": 34962
+        },
+        {
+            "name": "circuit/data/vertices-12",
+            "buffer": 0,
+            "byteOffset": 1477408,
+            "byteLength": 2199888,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "name": "circuit/data/indices-2",
+            "buffer": 0,
+            "byteOffset": 4605976,
+            "byteLength": 4008,
+            "target": 34963
+        },
+        {
+            "name": "circuit/data/vertices-8",
+            "buffer": 0,
+            "byteOffset": 3677296,
+            "byteLength": 7392,
+            "byteStride": 8,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "name": "circuit/data",
+            "byteLength": 4609984,
+            "uri": "circuit0.bin"
+        }
+    ]
+}
