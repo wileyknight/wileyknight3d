@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-spring/three": "^9.0.0-rc.3",
     "@react-three/drei": "^2.2.10",
+    "@react-three/fiber": "^6.0.10",
     "@react-three/flex": "^0.5.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

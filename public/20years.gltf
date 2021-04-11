@@ -88,9 +88,9 @@
             "bufferView": 0,
             "byteOffset": 0,
             "componentType": 5123,
-            "count": 2808,
+            "count": 2787,
             "max": [
-                980
+                1063
             ],
             "min": [
                 0
@@ -102,7 +102,7 @@
             "bufferView": 1,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 981,
+            "count": 1064,
             "max": [
                 0.0,
                 0.0,
@@ -122,45 +122,45 @@
             "bufferView": 2,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 981,
+            "count": 1064,
             "max": [
-                0.9665747880935668,
-                0.7794222831726074,
-                0.7422958016395569
+                0.8020563125610352,
+                0.988659918308258,
+                0.7987586259841919
             ],
             "min": [
-                -0.9709748029708862,
-                -0.7789596319198608,
-                -0.6700704097747803
+                -0.8020896315574646,
+                -0.9886543154716492,
+                -0.6157333254814148
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#0/vertices/POSITION",
             "bufferView": 2,
-            "byteOffset": 11772,
+            "byteOffset": 12768,
             "componentType": 5126,
-            "count": 981,
+            "count": 1064,
             "max": [
-                3.669097900390625,
-                2.496695041656494,
-                3.082603693008423
+                8.733253479003907,
+                5.341509342193604,
+                7.789155960083008
             ],
             "min": [
-                -3.5266544818878176,
-                -1.2763344049453736,
-                -2.517887592315674
+                -5.658838748931885,
+                -4.802922248840332,
+                -1.0256030559539796
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#1/indices",
             "bufferView": 0,
-            "byteOffset": 5616,
+            "byteOffset": 5574,
             "componentType": 5123,
-            "count": 933,
+            "count": 927,
             "max": [
-                330
+                346
             ],
             "min": [
                 0
@@ -170,9 +170,9 @@
         {
             "name": "YearsShape#1/vertices/COLOR_0",
             "bufferView": 1,
-            "byteOffset": 15696,
+            "byteOffset": 17024,
             "componentType": 5126,
-            "count": 331,
+            "count": 347,
             "max": [
                 0.0,
                 0.0,
@@ -190,55 +190,55 @@
         {
             "name": "YearsShape#1/vertices/NORMAL",
             "bufferView": 2,
-            "byteOffset": 23544,
+            "byteOffset": 25536,
             "componentType": 5126,
-            "count": 331,
+            "count": 347,
             "max": [
-                0.9422357678413392,
-                0.7798460125923157,
-                0.7422958016395569
+                0.8020685911178589,
+                0.9886587262153626,
+                0.7886210680007935
             ],
             "min": [
-                -0.9470338225364684,
-                -0.7797651290893555,
-                -0.6700709462165833
+                -0.8020867705345154,
+                -0.9595346450805664,
+                -0.6157367825508118
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#1/vertices/POSITION",
             "bufferView": 2,
-            "byteOffset": 27516,
+            "byteOffset": 29700,
             "componentType": 5126,
-            "count": 331,
+            "count": 347,
             "max": [
-                3.463932514190674,
-                2.496695041656494,
-                1.8365628719329837
+                6.532482147216797,
+                5.266992568969727,
+                7.789155960083008
             ],
             "min": [
-                -3.877210378646851,
-                -1.2763344049453736,
-                -3.2698135375976564
+                -8.920818328857422,
+                -4.794851303100586,
+                -0.9019029140472412
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#1/vertices/TANGENT",
             "bufferView": 1,
-            "byteOffset": 20992,
+            "byteOffset": 22576,
             "componentType": 5126,
-            "count": 331,
+            "count": 347,
             "max": [
-                0.97095787525177,
-                0.7768490314483643,
-                0.7422957420349121,
+                0.7942054271697998,
+                0.9886603355407716,
+                0.78790682554245,
                 1.0
             ],
             "min": [
-                -0.7804709076881409,
-                -0.7365483641624451,
-                -0.7422960996627808,
+                -0.74746173620224,
+                -0.9599167108535768,
+                -0.7879072427749634,
                 -1.0
             ],
             "type": "VEC4"
@@ -248,7 +248,7 @@
             "bufferView": 3,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 331,
+            "count": 347,
             "max": [
                 0.9649579524993897,
                 0.9980079531669616
@@ -262,11 +262,11 @@
         {
             "name": "YearsShape#2/indices",
             "bufferView": 0,
-            "byteOffset": 7482,
+            "byteOffset": 7428,
             "componentType": 5123,
-            "count": 1389,
+            "count": 1260,
             "max": [
-                471
+                591
             ],
             "min": [
                 0
@@ -276,55 +276,55 @@
         {
             "name": "YearsShape#2/vertices/NORMAL",
             "bufferView": 2,
-            "byteOffset": 31488,
+            "byteOffset": 33864,
             "componentType": 5126,
-            "count": 472,
+            "count": 592,
             "max": [
-                1.0,
-                1.0,
-                1.0
+                0.10096323490142822,
+                0.5581448078155518,
+                0.8319908976554871
             ],
             "min": [
-                -1.0,
-                -1.0,
-                -1.0
+                0.08730272948741913,
+                0.5455251932144165,
+                0.8251379728317261
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#2/vertices/POSITION",
             "bufferView": 2,
-            "byteOffset": 37152,
+            "byteOffset": 40968,
             "componentType": 5126,
-            "count": 472,
+            "count": 592,
             "max": [
-                16.559301376342778,
-                0.2185499668121338,
-                16.559301376342778
+                45.39300537109375,
+                37.32365417480469,
+                28.759105682373048
             ],
             "min": [
-                -16.559301376342778,
-                -4.941581726074219,
-                -16.559301376342778
+                -44.84275436401367,
+                -36.51624298095703,
+                -23.872905731201173
             ],
             "type": "VEC3"
         },
         {
             "name": "YearsShape#2/vertices/TANGENT",
             "bufferView": 1,
-            "byteOffset": 26288,
+            "byteOffset": 28128,
             "componentType": 5126,
-            "count": 472,
+            "count": 592,
             "max": [
-                1.0,
-                7.99999977374455e-9,
-                1.0,
+                0.9463475346565248,
+                0.3414439558982849,
+                -0.2460271567106247,
                 1.0
             ],
             "min": [
-                -0.04635947197675705,
-                -1.999999943436137e-9,
-                -1.0,
+                0.8811524510383606,
+                0.20951606333255769,
+                -0.3270877003669739,
                 1.0
             ],
             "type": "VEC4"
@@ -332,16 +332,16 @@
         {
             "name": "YearsShape#2/vertices/TEXCOORD_0",
             "bufferView": 3,
-            "byteOffset": 2648,
+            "byteOffset": 2776,
             "componentType": 5126,
-            "count": 472,
+            "count": 592,
             "max": [
-                0.875,
-                1.0
+                0.625,
+                0.75
             ],
             "min": [
-                0.125,
-                0.0
+                0.375,
+                0.5
             ],
             "type": "VEC2"
         }
@@ -350,31 +350,31 @@
         {
             "name": "20years/data/indices-2",
             "buffer": 0,
-            "byteOffset": 83080,
-            "byteLength": 10260,
+            "byteOffset": 93184,
+            "byteLength": 9948,
             "target": 34963
         },
         {
             "name": "20years/data/vertices-16",
             "buffer": 0,
             "byteOffset": 0,
-            "byteLength": 33840,
+            "byteLength": 37600,
             "byteStride": 16,
             "target": 34962
         },
         {
             "name": "20years/data/vertices-12",
             "buffer": 0,
-            "byteOffset": 33840,
-            "byteLength": 42816,
+            "byteOffset": 37600,
+            "byteLength": 48072,
             "byteStride": 12,
             "target": 34962
         },
         {
             "name": "20years/data/vertices-8",
             "buffer": 0,
-            "byteOffset": 76656,
-            "byteLength": 6424,
+            "byteOffset": 85672,
+            "byteLength": 7512,
             "byteStride": 8,
             "target": 34962
         }
@@ -382,7 +382,7 @@
     "buffers": [
         {
             "name": "20years/data",
-            "byteLength": 93340,
+            "byteLength": 103132,
             "uri": "20years0.bin"
         }
     ]
