@@ -13,7 +13,7 @@ import {
   extend,
   useThree,
   ReactThreeFiber,
-} from 'react-three-fiber';
+} from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -34,7 +34,9 @@ import {
   MaskPass,
   ClearMaskPass,
 } from 'three/examples/jsm/postprocessing/MaskPass';
+import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { CopyShader } from 'three/examples/jsm/shaders/CopyShader';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
 declare global {
   namespace JSX {
@@ -78,7 +80,7 @@ const Circuit = (props) => {
   const fbx = useLoader<any, string>(GLTFLoader, './circuit.gltf');
   return (
     <group {...props} dispose={null} position={[0, -160, 120]}>
-      <mesh visible geometry={fbx.nodes.circuitShape.geometry}>
+      <mesh geometry={fbx.nodes.circuitShape.geometry}>
         <meshStandardMaterial
           attach="material"
           color="white"
@@ -100,9 +102,7 @@ const FullScene = (props) => {
       rotateX={[0]}
       scale={[12, 12, 12]}
     >
-      <mesh visible geometry={fbx.nodes.blocka.geometry}>
-        {<meshNormalMaterial />}
-      </mesh>
+      <mesh geometry={fbx.nodes.blocka.geometry}>{<meshNormalMaterial />}</mesh>
     </group>
   );
 };
@@ -120,15 +120,42 @@ function Main() {
   );
 }
 
-function PlainMask() {
-  const maskPts = [];
-  maskPts.push(new THREE.Vector2(0, 0));
-  maskPts.push(new THREE.Vector2(0, 320));
-  maskPts.push(new THREE.Vector2(320, 420));
-  maskPts.push(new THREE.Vector2(320, 100));
-  maskPts.push(new THREE.Vector2(0, 0));
+function PlaneMask1() {
+  const maskShape = useMemo(() => {
+    const maskPts = [];
+    maskPts.push(new THREE.Vector2(0, 0));
+    maskPts.push(new THREE.Vector2(0, 320));
+    maskPts.push(new THREE.Vector2(320, 420));
+    maskPts.push(new THREE.Vector2(320, 100));
+    maskPts.push(new THREE.Vector2(0, 0));
+    return new THREE.Shape(maskPts);
+  }, []);
 
-  const maskShape: any = new THREE.Shape(maskPts);
+  const [y]: any = Scroll([-window.innerHeight, window.innerHeight], {
+    domTarget: window,
+  });
+
+  return (
+    <a.group position-y={y.to((y) => (-y / (window.innerHeight / 1)) * 50)}>
+      <mesh position={[-160, -210, 0]}>
+        <shapeGeometry args={[maskShape]} />
+        <meshBasicMaterial attach="material" color={'#FF0000'} />
+      </mesh>
+    </a.group>
+  );
+}
+
+function PlaneMask2() {
+  const maskShape = useMemo(() => {
+    const maskPts = [];
+    maskPts.push(new THREE.Vector2(0, 0));
+    maskPts.push(new THREE.Vector2(0, 320));
+    maskPts.push(new THREE.Vector2(320, 320));
+    maskPts.push(new THREE.Vector2(320, 0));
+    maskPts.push(new THREE.Vector2(240, -80));
+    maskPts.push(new THREE.Vector2(0, 0));
+    return new THREE.Shape(maskPts);
+  }, []);
 
   const [y]: any = Scroll([-window.innerHeight, window.innerHeight], {
     domTarget: window,
@@ -136,15 +163,15 @@ function PlainMask() {
 
   return (
     <a.group position-y={y.to((y) => (-y / (window.innerHeight / 1)) * 500)}>
-      <mesh position-x={-160} position-y={-210}>
-        <shapeBufferGeometry attach="geometry" args={maskShape} />
+      <mesh position={[-160, 0, 0]}>
+        <shapeGeometry args={[maskShape]} />
         <meshBasicMaterial attach="material" color={'#FF0000'} />
       </mesh>
     </a.group>
   );
 }
 
-function Hud() {
+function Secondary() {
   return (
     <>
       <ambientLight />
@@ -158,6 +185,24 @@ function Hud() {
 }
 
 function App() {
+  const sceneCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      1,
+      10000,
+    );
+  }, []);
+  const maskCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      1,
+      10000,
+    );
+  }, []);
+  sceneCamera.position.set(0, 0, 200);
+  maskCamera.position.set(0, 0, 200);
   return (
     <Canvas
       style={{ background: '#324466' }}
@@ -177,38 +222,28 @@ function App() {
         shadow-camera-top={1000}
         shadow-camera-bottom={-1000}
       />
-
-      <Plane />
+      <Plane sceneCamera={sceneCamera} maskCamera={maskCamera} />
     </Canvas>
   );
 }
 
-function Plane() {
+function Plane({ sceneCamera, maskCamera }) {
   const { gl, size } = useThree();
-  const sceneCamera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000,
-  );
-  const maskCamera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000,
-  );
+
   const controls = useRef<OrbitControls>();
 
   const fgComposer = useRef<THREE.WebGL1Renderer>();
   const bgComposer = useRef<THREE.WebGL1Renderer>();
   const maskComposer = useRef<THREE.WebGL1Renderer>();
 
+  const svgRef = useRef();
+
   const fgRenderTarget = useMemo(
     () =>
       new THREE.WebGLRenderTarget(size.width, size.height, {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
-        format: THREE.RGBAFormat,
+        format: THREE.RGBFormat,
         stencilBuffer: false,
       }),
     [size.width, size.height],
@@ -219,7 +254,7 @@ function Plane() {
       new THREE.WebGLRenderTarget(size.width, size.height, {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
-        format: THREE.RGBAFormat,
+        format: THREE.RGBFormat,
         stencilBuffer: false,
       }),
     [size.width, size.height],
@@ -248,14 +283,17 @@ function Plane() {
     return bgScene;
   }, []);
 
-  const maskScene = useMemo(() => {
+  const maskScene1 = useMemo(() => {
     const maskScene = new THREE.Scene();
     maskScene.background = new THREE.Color('green');
     return maskScene;
   }, []);
 
-  sceneCamera.position.set(0, 0, 200);
-  maskCamera.position.set(0, 0, 200);
+  const maskScene2 = useMemo(() => {
+    const maskScene = new THREE.Scene();
+    maskScene.background = new THREE.Color('green');
+    return maskScene;
+  }, []);
 
   useEffect(() => {
     fgComposer.current.setSize(size.width, size.height);
@@ -264,12 +302,25 @@ function Plane() {
   }, [size]);
 
   useFrame((state) => {
-    controls.current.update();
+    if (controls.current) {
+      controls.current.update();
+    }
+
     state.gl.autoClear = false;
     state.gl.clear();
-    fgComposer.current.render(fgScene, sceneCamera);
-    maskComposer.current.render(maskScene, maskCamera);
-    bgComposer.current.render(bgScene, sceneCamera);
+    if (fgComposer.current) {
+      fgComposer.current.render(fgScene, sceneCamera);
+    }
+    if (maskComposer.current) {
+      maskComposer.current.render(maskScene1, maskCamera);
+    }
+    if (maskComposer.current) {
+      maskComposer.current.render(maskScene2, maskCamera);
+    }
+
+    if (bgComposer.current) {
+      bgComposer.current.render(bgScene, sceneCamera);
+    }
   });
 
   return (
@@ -288,8 +339,9 @@ function Plane() {
 
       {/** PORTALS */}
       {createPortal(<Main />, fgScene)}
-      {createPortal(<Hud />, bgScene)}
-      {createPortal(<PlainMask />, maskScene)}
+      {createPortal(<Secondary />, bgScene)}
+      {createPortal(<PlaneMask1 />, maskScene1)}
+      {createPortal(<PlaneMask2 />, maskScene2)}
 
       {/** FOREGROUND PORTAL EFFECTS */}
       <effectComposer
@@ -315,12 +367,20 @@ function Plane() {
       <effectComposer ref={maskComposer} args={[gl, maskRenderTarget]}>
         <clearPass attachArray="passes" />
         {/** BACKGROUND */}
+        <maskPass attachArray="passes" args={[maskScene1, maskCamera]} />
         <texturePass attachArray="passes" args={[bgRenderTarget.texture]} />
+        <clearMaskPass attachArray="passes" />
         {/** FOREGROUND MASK */}
-        <maskPass attachArray="passes" args={[maskScene, maskCamera]} />
+        <maskPass attachArray="passes" args={[maskScene2, maskCamera]} />
         {/** FOREGROUND */}
         <texturePass attachArray="passes" args={[fgRenderTarget.texture]} />
         <clearMaskPass attachArray="passes" />
+        <shaderPass
+          attachArray="passes"
+          args={[FXAAShader]}
+          uniforms-resolution-value={[1 / size.width, 1 / size.height]}
+          renderToScreen
+        />
         <shaderPass attachArray="passes" args={[CopyShader]} renderToScreen />
       </effectComposer>
     </>
