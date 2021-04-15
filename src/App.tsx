@@ -1,25 +1,16 @@
-import React, {
-  useRef,
-  Suspense,
-  useEffect,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   Canvas,
   useFrame,
-  useLoader,
   createPortal,
   extend,
   useThree,
   ReactThreeFiber,
 } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './App.css';
-import { useSpring, config } from '@react-spring/core';
-import { a } from '@react-spring/three';
+import { useSpring, a, config } from 'react-spring/three';
 import { useGesture } from 'react-use-gesture';
 import { Html } from '@react-three/drei';
 import clamp from 'lodash/clamp';
@@ -36,7 +27,10 @@ import {
 } from 'three/examples/jsm/postprocessing/MaskPass';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { CopyShader } from 'three/examples/jsm/shaders/CopyShader';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+import create from 'zustand';
+
+import Main from './Main';
+import Secondary from './Secondary';
 
 declare global {
   namespace JSX {
@@ -72,72 +66,44 @@ extend({
   RenderPass,
 });
 
-const Loading = () => {
-  return <Box />;
+type State = {
+  scrollY: number;
+  scene: number;
+  transition: boolean;
+  yUp: (by: number) => void;
+  yDown: (by: number) => void;
 };
 
-const Circuit = (props) => {
-  const fbx = useLoader<any, string>(GLTFLoader, './circuit.gltf');
-  return (
-    <group {...props} dispose={null} position={[0, -160, 120]}>
-      <mesh geometry={fbx.nodes.circuitShape.geometry}>
-        <meshStandardMaterial
-          attach="material"
-          color="white"
-          roughness={0.3}
-          metalness={0.5}
-        />
-      </mesh>
-    </group>
-  );
-};
+const useStore = create<State>((set) => ({
+  scrollY: 0,
+  scene: 0,
+  transition: false,
+  yUp: (springPos: number) => set((state) => ({ scrollY: springPos })),
+  yDown: () => set((state) => ({ scrollY: state.scrollY - 1 })),
+  resetY: () => set({ scrollY: 0 }),
+}));
 
-const FullScene = (props) => {
-  const fbx = useLoader<any, string>(GLTFLoader, './20fill.gltf');
-  return (
-    <group
-      {...props}
-      dispose={null}
-      position={[0, 0, 0]}
-      rotateX={[0]}
-      scale={[12, 12, 12]}
-    >
-      <mesh geometry={fbx.nodes.blocka.geometry}>{<meshNormalMaterial />}</mesh>
-    </group>
-  );
-};
+//const unsub1 = useStore.subscribe(console.log);
 
-function Main() {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <Suspense fallback={<Loading />}>
-        <Circuit />
-      </Suspense>
-    </>
-  );
-}
+type V3 = [number, number, number];
 
 function PlaneMask1() {
+  const divX = window.innerWidth / 10;
+  const divY = window.innerHeight / 10;
   const maskShape = useMemo(() => {
     const maskPts = [];
     maskPts.push(new THREE.Vector2(0, 0));
-    maskPts.push(new THREE.Vector2(0, 320));
-    maskPts.push(new THREE.Vector2(320, 420));
-    maskPts.push(new THREE.Vector2(320, 100));
+    maskPts.push(new THREE.Vector2(0, divY));
+    maskPts.push(new THREE.Vector2(divX, divY / 4 + divY));
+    maskPts.push(new THREE.Vector2(divX, 0));
+    maskPts.push(new THREE.Vector2(0, -divY / 4));
     maskPts.push(new THREE.Vector2(0, 0));
     return new THREE.Shape(maskPts);
-  }, []);
-
-  const [y]: any = Scroll([-window.innerHeight, window.innerHeight], {
-    domTarget: window,
-  });
+  }, [divX, divY]);
 
   return (
-    <a.group position-y={y.to((y) => (-y / (window.innerHeight / 1)) * 50)}>
-      <mesh position={[-160, -210, 0]}>
+    <a.group>
+      <mesh position={[-(divX / 2), -(divY / 2), 0]}>
         <shapeGeometry args={[maskShape]} />
         <meshBasicMaterial attach="material" color={'#FF0000'} />
       </mesh>
@@ -146,41 +112,80 @@ function PlaneMask1() {
 }
 
 function PlaneMask2() {
+  const { size, viewport } = useThree();
+  const { width, height, factor } = viewport;
+  const aspect = size.width / viewport.width;
+  const divX = window.innerWidth / 10;
+  const divY = window.innerHeight / 10;
+
+  const [spring, setSpring] = useSpring(() => ({
+    position: [0, 0, 0] as V3,
+    config: {
+      mass: 1,
+      friction: 10,
+      tension: 100,
+    },
+  }));
+
+  const yRef = useRef<number>(useStore.getState().scrollY);
+
+  useEffect(
+    () =>
+      useStore.subscribe(
+        (scrollY: number) => (yRef.current = scrollY),
+        (state) => state.scrollY,
+      ),
+    [],
+  );
+
+  const bind = useGesture(
+    {
+      onDrag: ({ offset: [x, y] }) => {
+        const yPos = -(y / aspect) * 5;
+        console.log(yPos, y);
+        if (yPos > -divY) {
+          setSpring({
+            position: [0, -(y / aspect) * 5, 0],
+          });
+        } else if (yPos < -divY) {
+          useStore.setState({ scene: 1 });
+          setSpring({
+            position: [0, 0, 0],
+          });
+        }
+
+        useStore.setState({ scrollY: -(y / aspect) * 5 });
+      },
+      onWheel: ({ offset: [x, y] }) => {
+        setSpring({
+          position: [0, -(y / aspect) * 2, 0],
+        });
+      },
+    },
+    {
+      domTarget: window,
+    },
+  );
+
+  console.log(divX, divY);
   const maskShape = useMemo(() => {
     const maskPts = [];
     maskPts.push(new THREE.Vector2(0, 0));
-    maskPts.push(new THREE.Vector2(0, 320));
-    maskPts.push(new THREE.Vector2(320, 320));
-    maskPts.push(new THREE.Vector2(320, 0));
-    maskPts.push(new THREE.Vector2(240, -80));
+    maskPts.push(new THREE.Vector2(0, divY));
+    maskPts.push(new THREE.Vector2(divX, divY));
+    maskPts.push(new THREE.Vector2(divX, 0));
+    maskPts.push(new THREE.Vector2((divX / 4) * 3, -(divY / 4)));
     maskPts.push(new THREE.Vector2(0, 0));
     return new THREE.Shape(maskPts);
-  }, []);
-
-  const [y]: any = Scroll([-window.innerHeight, window.innerHeight], {
-    domTarget: window,
-  });
+  }, [divX, divY]);
 
   return (
-    <a.group position-y={y.to((y) => (-y / (window.innerHeight / 1)) * 500)}>
-      <mesh position={[-160, 0, 0]}>
+    <a.group {...spring}>
+      <mesh position={[-(divX / 2), divY / 2, 0]}>
         <shapeGeometry args={[maskShape]} />
         <meshBasicMaterial attach="material" color={'#FF0000'} />
       </mesh>
     </a.group>
-  );
-}
-
-function Secondary() {
-  return (
-    <>
-      <ambientLight />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <Suspense fallback={<Loading />}>
-        <FullScene />
-      </Suspense>
-    </>
   );
 }
 
@@ -202,12 +207,17 @@ function App() {
     );
   }, []);
   sceneCamera.position.set(0, 0, 200);
-  maskCamera.position.set(0, 0, 200);
+  maskCamera.position.set(
+    0,
+    0,
+    window.innerWidth / ((window.innerWidth / window.innerHeight) * 10 - 1),
+  );
   return (
     <Canvas
       style={{ background: '#324466' }}
       orthographic={true}
       camera={{ position: [0, 0, 500] }}
+      shadows
     >
       <directionalLight
         color={new THREE.Color().setHSL(1, 1, 1)}
@@ -235,8 +245,6 @@ function Plane({ sceneCamera, maskCamera }) {
   const fgComposer = useRef<THREE.WebGL1Renderer>();
   const bgComposer = useRef<THREE.WebGL1Renderer>();
   const maskComposer = useRef<THREE.WebGL1Renderer>();
-
-  const svgRef = useRef();
 
   const fgRenderTarget = useMemo(
     () =>
@@ -283,15 +291,13 @@ function Plane({ sceneCamera, maskCamera }) {
     return bgScene;
   }, []);
 
-  const maskScene1 = useMemo(() => {
+  const bgMask = useMemo(() => {
     const maskScene = new THREE.Scene();
-    maskScene.background = new THREE.Color('green');
     return maskScene;
   }, []);
 
-  const maskScene2 = useMemo(() => {
+  const fgMask = useMemo(() => {
     const maskScene = new THREE.Scene();
-    maskScene.background = new THREE.Color('green');
     return maskScene;
   }, []);
 
@@ -312,16 +318,40 @@ function Plane({ sceneCamera, maskCamera }) {
       fgComposer.current.render(fgScene, sceneCamera);
     }
     if (maskComposer.current) {
-      maskComposer.current.render(maskScene1, maskCamera);
+      maskComposer.current.render(bgMask, maskCamera);
     }
     if (maskComposer.current) {
-      maskComposer.current.render(maskScene2, maskCamera);
+      maskComposer.current.render(fgMask, maskCamera);
     }
-
     if (bgComposer.current) {
       bgComposer.current.render(bgScene, sceneCamera);
     }
   });
+
+  const sceneSelectors = [
+    {
+      environment: <Main />,
+      scene: fgScene,
+      mask: <PlaneMask1 />,
+      mScene: bgMask,
+    },
+    {
+      environment: <Secondary />,
+      scene: bgScene,
+      mask: <PlaneMask2 />,
+      mScene: fgMask,
+    },
+  ];
+
+  let currectScene = useStore.getState().scene;
+  let nextScene = 0;
+
+  if (currectScene + 1 < sceneSelectors.length) {
+    nextScene = currectScene + 1;
+  } else {
+    nextScene = 0;
+    currectScene = 1;
+  }
 
   return (
     <>
@@ -338,10 +368,10 @@ function Plane({ sceneCamera, maskCamera }) {
       />
 
       {/** PORTALS */}
-      {createPortal(<Main />, fgScene)}
-      {createPortal(<Secondary />, bgScene)}
-      {createPortal(<PlaneMask1 />, maskScene1)}
-      {createPortal(<PlaneMask2 />, maskScene2)}
+      {createPortal(sceneSelectors[nextScene].mask, fgMask)}
+      {createPortal(sceneSelectors[nextScene].environment, fgScene)}
+      {createPortal(sceneSelectors[currectScene].mask, bgMask)}
+      {createPortal(sceneSelectors[currectScene].environment, bgScene)}
 
       {/** FOREGROUND PORTAL EFFECTS */}
       <effectComposer
@@ -367,12 +397,11 @@ function Plane({ sceneCamera, maskCamera }) {
       <effectComposer ref={maskComposer} args={[gl, maskRenderTarget]}>
         <clearPass attachArray="passes" />
         {/** BACKGROUND */}
-        <maskPass attachArray="passes" args={[maskScene1, maskCamera]} />
+        <maskPass attachArray="passes" args={[bgMask, maskCamera]} />
         <texturePass attachArray="passes" args={[bgRenderTarget.texture]} />
         <clearMaskPass attachArray="passes" />
-        {/** FOREGROUND MASK */}
-        <maskPass attachArray="passes" args={[maskScene2, maskCamera]} />
         {/** FOREGROUND */}
+        <maskPass attachArray="passes" args={[fgMask, maskCamera]} />
         <texturePass attachArray="passes" args={[fgRenderTarget.texture]} />
         <clearMaskPass attachArray="passes" />
         <shaderPass
@@ -388,18 +417,6 @@ function Plane({ sceneCamera, maskCamera }) {
 }
 
 export default App;
-
-function Box(props) {
-  const [y]: any = Scroll([-1500, 1500], {
-    domTarget: window,
-  });
-  return (
-    <a.mesh position-y={y.to((y) => (-y / (window.innerHeight / 2)) * 50)}>
-      <boxBufferGeometry args={[60, 60, 60]} />
-      <meshNormalMaterial />
-    </a.mesh>
-  );
-}
 
 function Scroll(bounds: number[], props: any) {
   const [{ y }, set] = useSpring<any>(() => ({ y: 0, config: config.slow }));
