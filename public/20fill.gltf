@@ -1,7 +1,7 @@
 {
     "asset": {
         "copyright": "(C)2020 wiley",
-        "generator": "maya2glTF v1.1.0 c13125a0af77",
+        "generator": "maya2glTF v1.3.1 efac516101b7",
         "version": "2.0"
     },
     "scenes": [
@@ -56,7 +56,7 @@
             "componentType": 5123,
             "count": 3702,
             "max": [
-                1202
+                1265
             ],
             "min": [
                 0
@@ -68,34 +68,34 @@
             "bufferView": 1,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 1203,
+            "count": 1266,
             "max": [
                 1.0,
-                0.9966063499450684,
+                0.9966064095497133,
                 0.9680534601211548
             ],
             "min": [
                 -1.0,
-                -0.996602475643158,
-                -0.7071070671081543
+                -0.9966025352478029,
+                -0.7071080803871155
             ],
             "type": "VEC3"
         },
         {
             "name": "blockaShape#0/vertices/POSITION",
             "bufferView": 1,
-            "byteOffset": 14436,
+            "byteOffset": 15192,
             "componentType": 5126,
-            "count": 1203,
+            "count": 1266,
             "max": [
-                16.559301376342778,
-                11.887885093688965,
+                60.348045349121097,
+                35.48330307006836,
                 16.900188446044927
             ],
             "min": [
-                -16.559303283691408,
+                -60.348045349121097,
                 -15.179267883300782,
-                -10.166966438293456
+                -33.76238250732422
             ],
             "type": "VEC3"
         },
@@ -104,17 +104,17 @@
             "bufferView": 2,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 1203,
+            "count": 1266,
             "max": [
                 1.0,
                 0.993563175201416,
-                0.9909443855285645,
+                0.990944504737854,
                 1.0
             ],
             "min": [
                 -0.999945104122162,
                 -0.9963688254356384,
-                -0.9906027913093568,
+                -0.990602970123291,
                 -1.0
             ],
             "type": "VEC4"
@@ -124,7 +124,7 @@
             "bufferView": 3,
             "byteOffset": 0,
             "componentType": 5126,
-            "count": 1203,
+            "count": 1266,
             "max": [
                 0.875,
                 1.0
@@ -140,15 +140,15 @@
         {
             "name": "20fill/data/indices-2",
             "buffer": 0,
-            "byteOffset": 57744,
+            "byteOffset": 60768,
             "byteLength": 7404,
             "target": 34963
         },
         {
             "name": "20fill/data/vertices-12",
             "buffer": 0,
-            "byteOffset": 19248,
-            "byteLength": 28872,
+            "byteOffset": 20256,
+            "byteLength": 30384,
             "byteStride": 12,
             "target": 34962
         },
@@ -156,15 +156,15 @@
             "name": "20fill/data/vertices-16",
             "buffer": 0,
             "byteOffset": 0,
-            "byteLength": 19248,
+            "byteLength": 20256,
             "byteStride": 16,
             "target": 34962
         },
         {
             "name": "20fill/data/vertices-8",
             "buffer": 0,
-            "byteOffset": 48120,
-            "byteLength": 9624,
+            "byteOffset": 50640,
+            "byteLength": 10128,
             "byteStride": 8,
             "target": 34962
         }
@@ -172,7 +172,7 @@
     "buffers": [
         {
             "name": "20fill/data",
-            "byteLength": 65148,
+            "byteLength": 68172,
             "uri": "20fill0.bin"
         }
     ]

@@ -1,0 +1,179 @@
+{
+    "asset": {
+        "copyright": "(C)2020 wiley",
+        "generator": "maya2glTF v1.3.1 efac516101b7",
+        "version": "2.0"
+    },
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0,
+    "nodes": [
+        {
+            "name": "blocka",
+            "mesh": 0
+        }
+    ],
+    "meshes": [
+        {
+            "name": "blockaShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 1,
+                        "POSITION": 2,
+                        "TANGENT": 3,
+                        "TEXCOORD_0": 4
+                    },
+                    "indices": 0,
+                    "mode": 4,
+                    "material": 0
+                }
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "aiStandardSurface1",
+            "pbrMetallicRoughness": {
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.0
+            }
+        }
+    ],
+    "accessors": [
+        {
+            "name": "blockaShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 3702,
+            "max": [
+                1265
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "blockaShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1266,
+            "max": [
+                1.0,
+                0.9966064095497133,
+                0.9680534601211548
+            ],
+            "min": [
+                -1.0,
+                -0.9966025352478029,
+                -0.7071074843406677
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "blockaShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 15192,
+            "componentType": 5126,
+            "count": 1266,
+            "max": [
+                135.44790649414066,
+                35.48330307006836,
+                16.900188446044927
+            ],
+            "min": [
+                -135.44790649414066,
+                -15.179267883300782,
+                -33.76238250732422
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "blockaShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1266,
+            "max": [
+                1.0,
+                0.993563175201416,
+                0.990944504737854,
+                1.0
+            ],
+            "min": [
+                -0.999945104122162,
+                -0.9963688254356384,
+                -0.990602970123291,
+                -1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "blockaShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1266,
+            "max": [
+                0.875,
+                1.0
+            ],
+            "min": [
+                0.125,
+                0.0
+            ],
+            "type": "VEC2"
+        }
+    ],
+    "bufferViews": [
+        {
+            "name": "20fill/data/indices-2",
+            "buffer": 0,
+            "byteOffset": 60768,
+            "byteLength": 7404,
+            "target": 34963
+        },
+        {
+            "name": "20fill/data/vertices-12",
+            "buffer": 0,
+            "byteOffset": 20256,
+            "byteLength": 30384,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "name": "20fill/data/vertices-16",
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 20256,
+            "byteStride": 16,
+            "target": 34962
+        },
+        {
+            "name": "20fill/data/vertices-8",
+            "buffer": 0,
+            "byteOffset": 50640,
+            "byteLength": 10128,
+            "byteStride": 8,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "name": "20fill/data",
+            "byteLength": 68172,
+            "uri": "20fill0.bin"
+        }
+    ]
+}

@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useMemo, MutableRefObject } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { useThree } from '@react-three/fiber';
 import './App.css';
 import * as THREE from 'three';
-import { useSpring, a, config } from 'react-spring/three';
+import { useSpring, a } from 'react-spring/three';
 import { useGesture } from 'react-use-gesture';
 import useStore from './Store';
 
@@ -63,18 +63,17 @@ export function PlaneMask2() {
   let transitioning = useStore((state) => state.transition);
   let timeline = useStore((state) => state.timelines);
 
-  const bind = useGesture(
+  useGesture(
     {
-      onDrag: ({ movement: [x, y], direction: [lr, down] }) => {
-        const yPos = -(y / aspect);
-        //console.log(yPos, y, yRef.current, -divY);
+      onDrag: ({ delta: [, y], direction: [, down] }) => {
         if (down === 1) {
+          console.log(`dn y: ${y}, yRef: ${yRef.current}, divY: ${-divY}`);
           if (transitioning) {
             if (yRef.current > -divY) {
               setSpring({
                 position: [0, yRef.current, 0],
               });
-              useStore.setState({ scrollY: yRef.current + yPos });
+              useStore.setState({ scrollY: yRef.current - y });
             } else if (yRef.current < -divY) {
               if (currectScene !== 1) {
                 console.log('current scene 1');
@@ -92,19 +91,20 @@ export function PlaneMask2() {
           } else {
             if (yRef.current > -timeline[currectScene]) {
               //set state for y
-              useStore.setState({ scrollY: yRef.current + yPos });
+              useStore.setState({ scrollY: yRef.current - y });
             } else {
               useStore.setState({ scrollY: 0 });
               useStore.setState({ transition: true });
             }
           }
         } else if (down === -1) {
+          console.log(`up y: ${y}, yRef: ${yRef.current}, divY: ${divY}`);
           if (transitioning) {
             if (yRef.current < divY) {
               setSpring({
                 position: [0, yRef.current, 0],
               });
-              useStore.setState({ scrollY: yRef.current + yPos });
+              useStore.setState({ scrollY: yRef.current - y });
             } else if (yRef.current > divY) {
               if (currectScene !== 1) {
                 console.log('up current scene 1');
@@ -122,7 +122,7 @@ export function PlaneMask2() {
           } else {
             if (yRef.current > timeline[currectScene]) {
               // set state for y
-              useStore.setState({ scrollY: yRef.current + yPos });
+              useStore.setState({ scrollY: yRef.current - y });
             } else {
               useStore.setState({ scrollY: 0 });
               useStore.setState({ transition: true });
@@ -141,7 +141,6 @@ export function PlaneMask2() {
     },
   );
 
-  //console.log(divX, divY);
   const maskShape = useMemo(() => {
     const maskPts = [];
     maskPts.push(new THREE.Vector2(0, 0));

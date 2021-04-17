@@ -9,7 +9,7 @@ import {
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './App.css';
-import { Html } from '@react-three/drei';
+import { html } from '@react-three/drei';
 //import { lerp } from 'lerp';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -25,7 +25,7 @@ import { CopyShader } from 'three/examples/jsm/shaders/CopyShader';
 import useStore from './Store';
 import Main from './Main';
 import Secondary from './Secondary';
-import { PlaneMask1, PlaneMask2 } from './Masks';
+import { PlaneMask2 } from './Masks';
 
 declare global {
   namespace JSX {
@@ -153,11 +153,11 @@ function Plane({ sceneCamera, maskCamera }) {
       environment: <Secondary />,
       scene: bgScene,
       mask: <PlaneMask2 />,
-      color: 'purple',
+      color: 0x000d2c,
     },
   ];
 
-  let transitioning = useStore((state) => state.transition);
+  //let transitioning = useStore((state) => state.transition);
 
   let currectScene = useStore((state) => state.scene);
   let nextScene = 0;
