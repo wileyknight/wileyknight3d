@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import './App.css';
 
-import Plane from './ScrollHandler';
+import Compositor from './Compositor';
 
 function App() {
   const sceneCamera = useMemo(() => {
@@ -37,18 +37,11 @@ function App() {
     >
       <directionalLight
         color={new THREE.Color().setHSL(1, 1, 1)}
-        intensity={1}
+        intensity={2}
         position={[0, 1, 1]}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-far={1000}
-        shadow-camera-left={-1000}
-        shadow-camera-right={1000}
-        shadow-camera-top={1000}
-        shadow-camera-bottom={-1000}
       />
-      <Plane sceneCamera={sceneCamera} maskCamera={maskCamera} />
+      <ambientLight intensity={10} />
+      <Compositor sceneCamera={sceneCamera} maskCamera={maskCamera} />
     </Canvas>
   );
 }

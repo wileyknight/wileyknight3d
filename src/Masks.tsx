@@ -2,39 +2,15 @@ import React, { useRef, useEffect, useMemo } from 'react';
 import { useThree } from '@react-three/fiber';
 import './App.css';
 import * as THREE from 'three';
-import { useSpring, a } from 'react-spring/three';
+import { useSpring, a, SpringValue } from 'react-spring/three';
 import { useGesture } from 'react-use-gesture';
 import useStore from './Store';
+import ScrollHandler from './ScrollHandler';
 
 type V3 = [number, number, number];
 
-export function PlaneMask1() {
-  const divX = window.innerWidth / 10;
-  const divY = window.innerHeight / 10;
-  const maskShape = useMemo(() => {
-    const maskPts = [];
-    maskPts.push(new THREE.Vector2(0, 0));
-    maskPts.push(new THREE.Vector2(0, divY));
-    maskPts.push(new THREE.Vector2(divX, divY / 4 + divY));
-    maskPts.push(new THREE.Vector2(divX, 0));
-    maskPts.push(new THREE.Vector2(0, -divY / 4));
-    maskPts.push(new THREE.Vector2(0, 0));
-    return new THREE.Shape(maskPts);
-  }, [divX, divY]);
-
-  return (
-    <a.group>
-      <mesh position={[-(divX / 2), -(divY / 2), 0]}>
-        <shapeGeometry args={[maskShape]} />
-        <meshBasicMaterial attach="material" color={'#FF0000'} />
-      </mesh>
-    </a.group>
-  );
-}
-
-export function PlaneMask2() {
+export function MaskPlane() {
   const { size, viewport } = useThree();
-  //const { width, height, factor } = viewport;
   const aspect = size.width / viewport.width;
   const divX = window.innerWidth / 10;
   const divY = window.innerHeight / 10;
@@ -49,6 +25,10 @@ export function PlaneMask2() {
   }));
 
   const yRef = useRef<number>(useStore.getState().scrollY);
+  let currentScene = useStore((state) => state.currentScene);
+  let transitioning = useStore((state) => state.transitioning);
+  let timeline = useStore((state) => state.timelines);
+  let bounds = useRef<string>(useStore.getState().bounds);
 
   useEffect(
     () =>
@@ -59,80 +39,43 @@ export function PlaneMask2() {
     [],
   );
 
-  let currectScene = useStore((state) => state.scene);
-  let transitioning = useStore((state) => state.transition);
-  let timeline = useStore((state) => state.timelines);
+  useEffect(
+    () =>
+      useStore.subscribe(
+        (direction: string) => (bounds.current = direction),
+        (state) => state.bounds,
+      ),
+    [],
+  );
+
+  let maskPosition = 0;
 
   useGesture(
     {
       onDrag: ({ delta: [, y], direction: [, down] }) => {
-        if (down === 1) {
-          console.log(`dn y: ${y}, yRef: ${yRef.current}, divY: ${-divY}`);
-          if (transitioning) {
-            if (yRef.current > -divY) {
-              setSpring({
-                position: [0, yRef.current, 0],
-              });
-              useStore.setState({ scrollY: yRef.current - y });
-            } else if (yRef.current < -divY) {
-              if (currectScene !== 1) {
-                console.log('current scene 1');
-                useStore.setState({ scene: 1 });
-              } else {
-                console.log('current scene 0');
-                useStore.setState({ scene: 0 });
-              }
-              setSpring({
-                position: [0, 0, 0],
-              });
-              useStore.setState({ scrollY: 0 });
-              useStore.setState({ transition: false });
-            }
-          } else {
-            if (yRef.current > -timeline[currectScene]) {
-              //set state for y
-              useStore.setState({ scrollY: yRef.current - y });
-            } else {
-              useStore.setState({ scrollY: 0 });
-              useStore.setState({ transition: true });
-            }
-          }
-        } else if (down === -1) {
-          console.log(`up y: ${y}, yRef: ${yRef.current}, divY: ${divY}`);
-          if (transitioning) {
-            if (yRef.current < divY) {
-              setSpring({
-                position: [0, yRef.current, 0],
-              });
-              useStore.setState({ scrollY: yRef.current - y });
-            } else if (yRef.current > divY) {
-              if (currectScene !== 1) {
-                console.log('up current scene 1');
-                useStore.setState({ scene: 1 });
-              } else {
-                console.log('up current scene 0');
-                useStore.setState({ scene: 0 });
-              }
-              setSpring({
-                position: [0, 0, 0],
-              });
-              useStore.setState({ scrollY: 0 });
-              useStore.setState({ transition: false });
-            }
-          } else {
-            if (yRef.current > timeline[currectScene]) {
-              // set state for y
-              useStore.setState({ scrollY: yRef.current - y });
-            } else {
-              useStore.setState({ scrollY: 0 });
-              useStore.setState({ transition: true });
-            }
-          }
-        }
-      },
-      onWheel: ({ offset: [x, y] }) => {
         setSpring({
-          position: [0, -(y / aspect) * 2, 0],
+          position: ScrollHandler(
+            y,
+            down,
+            currentScene,
+            transitioning,
+            timeline,
+            yRef.current,
+            bounds.current,
+          ),
+        });
+      },
+      onWheel: ({ delta: [, y], direction: [, down] }) => {
+        setSpring({
+          position: ScrollHandler(
+            y,
+            down,
+            currentScene,
+            transitioning,
+            timeline,
+            yRef.current,
+            bounds.current,
+          ),
         });
       },
     },
@@ -143,18 +86,20 @@ export function PlaneMask2() {
 
   const maskShape = useMemo(() => {
     const maskPts = [];
-    maskPts.push(new THREE.Vector2(0, 0));
-    maskPts.push(new THREE.Vector2(0, divY));
-    maskPts.push(new THREE.Vector2(divX, divY));
-    maskPts.push(new THREE.Vector2(divX, 0));
-    maskPts.push(new THREE.Vector2((divX / 4) * 3, -(divY / 4)));
-    maskPts.push(new THREE.Vector2(0, 0));
+    const hX = divX / 2;
+    const hY = divY / 2;
+    maskPts.push(new THREE.Vector2(-hX, hY));
+    maskPts.push(new THREE.Vector2(hX, hY / 4 + hY));
+    maskPts.push(new THREE.Vector2(hX, -hY));
+    maskPts.push(new THREE.Vector2(hX / 2, -(hY / 2) - hY));
+    maskPts.push(new THREE.Vector2(-hX, -hY));
+    maskPts.push(new THREE.Vector2(-hX, hY));
     return new THREE.Shape(maskPts);
   }, [divX, divY]);
 
   return (
-    <a.group {...spring}>
-      <mesh position={[-(divX / 2), divY / 2, 0]}>
+    <a.group {...spring} visible={transitioning}>
+      <mesh position-y={maskPosition}>
         <shapeGeometry args={[maskShape]} />
         <meshBasicMaterial attach="material" color={'#FF0000'} />
       </mesh>

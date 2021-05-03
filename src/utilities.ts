@@ -1,21 +1,25 @@
+
+import react from 'react';
+export {};
+/*
 const utilities = {
-    getAspect: function (aspectW: number, aspectH: number) {
+    getAspect: (aspectW: number, aspectH: number) => {
       let aString = aspectW / aspectH;
       return aString.toFixed(3);
     },
-    getHeight: function (aspectW: number, aspectR: number) {
+    getHeight: (aspectW: number, aspectR: number) => {
       return aspectW / aspectR;
     },
-    getWidth: function (aspectH: number, aspectR: number) {
+    getWidth: (aspectH: number, aspectR: number) => {
       return aspectH * aspectR;
     },
-    scalePct: function (range: number, pct: number) {
+    scalePct: (range: number, pct: number) => {
       return (range / 100) * pct;
     },
-    getPct: function (range: number, total: number) {
+    getPct: (range: number, total: number) => {
       return range / (total / 100);
     },
-    easeInCubic: function (time: number, begin: number, change: number, duration: number) {
+    easeInCubic: (time: number, begin: number, change: number, duration: number) => {
       if (time >= begin && time < begin + duration) {
         return change * (time /= duration) * time * time + begin;
       } else if (begin > time) {
@@ -24,7 +28,7 @@ const utilities = {
         return begin + change;
       }
     },
-    easeOutCubic: function (time: number, begin: number, change: number, duration: number) {
+    easeOutCubic: (time: number, begin: number, change: number, duration: number) => {
       if (time >= begin && time < begin + duration) {
         return change * ((time = time / duration - 1) * time * time + 1) + begin;
       } else if (begin > time) {
@@ -33,7 +37,7 @@ const utilities = {
         return begin + change;
       }
     },
-    easeInOutCubic: function (time: number, begin: number, change: number, duration: number) {
+    easeInOutCubic: (time: number, begin: number, change: number, duration: number) => {
       if (time >= begin && time < begin + duration) {
         if ((time /= duration / 2) < 1)
           return (change / 2) * time * time * time + begin;
@@ -44,7 +48,7 @@ const utilities = {
         return begin + change;
       }
     },
-    easeLinear: function (time: number, begin: number, change: number, duration: number) {
+    easeLinear: (time: number, begin: number, change: number, duration: number) => {
       if (time >= begin && time < begin + duration) {
         var timelineTemp = (time * 100) / duration;
         return this.scalePct(timelineTemp, change);
@@ -177,8 +181,7 @@ interface IPoint {
    * Class : Point( x coordinate, y coordinate )
    * -------------------------------------------
    * Represents a single point on the plot.
-   */
-  
+   *
   class Point {
     numX: number;
     numY: number;
@@ -189,7 +192,7 @@ interface IPoint {
               The reason to the following is because we 
               want the origin to be at bottom left corner 
               instead of the top left.	
-          */
+          *
       this.numY = PLOT_HEIGHT - numY;
     }
   
@@ -217,7 +220,7 @@ interface IPoint {
    * ------------------------------------------------------------------
    * Represents a Bezier curve, the number of points passed in the con-
    * structor determine the degree of the curve.
-   */
+   *
   
   class BezierCurve {
     points: any;
@@ -279,7 +282,7 @@ interface IPoint {
    * -------------------------------------------
    * Represents a graph and exports methods for
    * drawing lines and curves.
-   */
+   *
   class Graph {
     //el: HTMLElement;
     constructor(id: string) {
@@ -354,7 +357,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-*/
+*
 
 
   function CSPL(){
@@ -455,3 +458,4 @@ SOFTWARE.
 		return q;
     }
 };
+*/

@@ -2,21 +2,25 @@ import create from 'zustand';
 
 type State = {
   scrollY: number;
-  scene: number;
-  transition: boolean;
-  timelines: [number, number];
-  yUp: (by: number) => void;
-  yDown: (by: number) => void;
+  currentScene: number;
+  nextScene: number;
+  transitioning: boolean;
+  timelines: [number, number, number, number];
+  bounds: string;
 };
 
 const useStore = create<State>((set) => ({
-  scrollY: 0,
-  scene: 0,
-  transition: true,
-  timelines: [window.innerHeight, window.innerHeight],
-  yUp: (springPos: number) => set((state) => ({ scrollY: springPos })),
-  yDown: () => set((state) => ({ scrollY: state.scrollY - 1 })),
-  resetY: () => set({ scrollY: 0 }),
+  scrollY: 1,
+  currentScene: 0,
+  nextScene: 0,
+  transitioning: false,
+  timelines: [
+    window.innerHeight / 2,
+    window.innerHeight / 2,
+    window.innerHeight / 2,
+    window.innerHeight / 2,
+  ],
+  bounds: '',
 }));
 
 export default useStore;
