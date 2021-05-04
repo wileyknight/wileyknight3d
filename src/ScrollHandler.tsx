@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import useStore from './Store';
 
 type V3 = [number, number, number];
@@ -16,18 +15,20 @@ export const ScrollHandler = (
   let maskPosition = 0;
 
   if (down === 1) {
+    // DOWN
     if (!transitioning) {
       if (yRef < timeline[currentScene]) {
-        //set state for y
+        // set y position
         useStore.setState({ scrollY: yRef + y });
         if (maskPosition !== -divY) {
           maskPosition = -divY;
         }
       } else {
+        // end of scroll down boundry
         useStore.setState({ scrollY: 1 });
         useStore.setState({ transitioning: true });
         useStore.setState({ bounds: 'low' });
-        if (currentScene + 1 !== timeline.length - 1) {
+        if (currentScene + 1 !== timeline.length) {
           useStore.setState({ nextScene: currentScene });
           useStore.setState({ currentScene: currentScene + 1 });
         } else {
@@ -36,40 +37,29 @@ export const ScrollHandler = (
         }
       }
     } else {
-      // transitioning
+      // transitioning down
       if (bounds === 'low') {
+        // top of screen
         if (yRef < divY / 4 + divY && yRef > 0) {
+          // set y position
           useStore.setState({ scrollY: yRef + y });
-          //setSpring({
-          //  position: [0, -yRef, 0],
-          //});
           return [0, -yRef, 0];
         } else {
+          // end of scroll
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
-          //setSpring({
-          //  position: [0, 1, 0],
-          //});
           return [0, 1, 0];
         }
       } else {
+        // reverse direction
         if (yRef > -(divY / 4 + divY) && yRef < 0) {
-          console.log(
-            `dn y: ${y}, yRef: ${yRef} | ${divY / 4 + divY}`,
-            transitioning,
-            bounds,
-          );
+          // set y position
           useStore.setState({ scrollY: yRef + y });
-          //setSpring({
-          //  position: [0, -yRef, 0],
-          //});
           return [0, -yRef, 0];
         } else {
+          // end of scroll
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
-          //setSpring({
-          //  position: [0, 1, 0],
-          //});
           return [0, 1, 0];
         }
       }
@@ -78,12 +68,13 @@ export const ScrollHandler = (
     // UP
     if (!transitioning) {
       if (yRef > 0) {
-        // set state for y
+        // set y position
         useStore.setState({ scrollY: yRef + y });
         if (maskPosition !== divY) {
           maskPosition = divY;
         }
       } else {
+        // end of scroll up boundry
         useStore.setState({ scrollY: 1 });
         useStore.setState({ transitioning: true });
         useStore.setState({ bounds: 'high' });
@@ -95,36 +86,30 @@ export const ScrollHandler = (
           useStore.setState({ currentScene: timeline.length - 1 });
         }
       }
-      // transitioning
+      // transitioning up
     } else {
       if (bounds === 'low') {
+        // top of screen
         if (yRef < divY / 4 + divY && yRef > 0) {
+          // set y position
           useStore.setState({ scrollY: yRef + y });
-          //setSpring({
-          //  position: [0, -yRef, 0],
-          //});
           return [0, -yRef, 0];
         } else {
+          // end of scroll
           useStore.setState({ scrollY: timeline[currentScene] });
           useStore.setState({ transitioning: false });
-          //setSpring({
-          //  position: [0, 1, 0],
-          //});
           return [0, 1, 0];
         }
       } else {
+        // reverse direction
         if (yRef > -(divY / 4 + divY)) {
+          //set y position
           useStore.setState({ scrollY: yRef + y });
-          //setSpring({
-          //  position: [0, -yRef, 0],
-          //});
           return [0, -yRef, 0];
         } else {
+          // end of scroll
           useStore.setState({ scrollY: timeline[currentScene] });
           useStore.setState({ transitioning: false });
-          //setSpring({
-          //  position: [0, 1, 0],
-          //});
           return [0, 1, 0];
         }
       }

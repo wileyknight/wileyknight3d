@@ -1,5 +1,5 @@
 import React, { Suspense, useRef, useEffect } from 'react';
-import { useLoader, useFrame, useThree } from '@react-three/fiber';
+import { useLoader, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
@@ -14,11 +14,12 @@ const Circuit = (props) => {
   //const { gl, size } = useThree();
 
   const fbx = useLoader<any, string>(GLTFLoader, './wileyknight_circuit.gltf');
-  /*
+
   const loader = new GLTFLoader();
 
   // Optional: Provide a DRACOLoader instance to decode compressed mesh data
   const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderConfig({ type: 'js' });
   dracoLoader.setDecoderPath(
     'https://www.gstatic.com/draco/versioned/decoders/1.4.1/draco_decoder.js',
   );
@@ -27,7 +28,7 @@ const Circuit = (props) => {
   // Load a glTF resource
   loader.load(
     // resource URL
-    './wileyknight_circuit_draco.gltf',
+    './wk_circuit_draco.gltf',
     // called when the resource is loaded
     function (gltf) {
       //scene.add(gltf.scene);
@@ -48,35 +49,6 @@ const Circuit = (props) => {
       console.log('An error happened');
     },
   );
-*/
-
-  /*
-  // Create the Draco decoder.
-  const decoderModule = DracoDecoderModule();
-  const buffer = new decoderModule.DecoderBuffer();
-  buffer.Init(byteArray, byteArray.length);
-
-  // Create a buffer to hold the encoded data.
-  const decoder = new decoderModule.Decoder();
-  const geometryType = decoder.GetEncodedGeometryType(buffer);
-
-  // Decode the encoded geometry.
-  let outputGeometry;
-  let status;
-  if (geometryType == decoderModule.TRIANGULAR_MESH) {
-    outputGeometry = new decoderModule.Mesh();
-    status = decoder.DecodeBufferToMesh(buffer, outputGeometry);
-  } else {
-    outputGeometry = new decoderModule.PointCloud();
-    status = decoder.DecodeBufferToPointCloud(buffer, outputGeometry);
-  }
-
-  // You must explicitly delete objects created from the DracoDecoderModule
-  // or Decoder.
-  decoderModule.destroy(outputGeometry);
-  decoderModule.destroy(decoder);
-  decoderModule.destroy(buffer);
-*/
 
   const fanL = useRef<THREE.geometry>();
   const fanR = useRef<THREE.geometry>();
@@ -122,14 +94,10 @@ const Circuit = (props) => {
       fanR.current.rotation.z += 0.3;
       if (!transitioning) {
         if (yRef.current > 0 && yRef.current < 85) {
-          if (yPrev.current !== undefined || yPrev.current !== 0) {
-            if (liquidRefs[yPrev.current] !== undefined) {
-              liquidRefs[yPrev.current].current.position.z = 200;
-            }
+          if (liquidRefs[yPrev.current] !== undefined) {
+            liquidRefs[yPrev.current].current.position.z = 200;
           }
-          if (yRef.current !== undefined || yRef.current !== 0) {
-            liquidRefs[yRef.current].current.position.z = 0;
-          }
+          liquidRefs[yRef.current].current.position.z = 0;
         }
       }
     }

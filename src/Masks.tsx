@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useMemo } from 'react';
-import { useThree } from '@react-three/fiber';
+//import { useThree } from '@react-three/fiber';
 import './App.css';
 import * as THREE from 'three';
-import { useSpring, a, SpringValue } from 'react-spring/three';
+import { useSpring, a } from 'react-spring/three';
 import { useGesture } from 'react-use-gesture';
 import useStore from './Store';
 import ScrollHandler from './ScrollHandler';
@@ -10,8 +10,8 @@ import ScrollHandler from './ScrollHandler';
 type V3 = [number, number, number];
 
 export function MaskPlane() {
-  const { size, viewport } = useThree();
-  const aspect = size.width / viewport.width;
+  //const { size, viewport } = useThree();
+  //const aspect = size.width / viewport.width;
   const divX = window.innerWidth / 10;
   const divY = window.innerHeight / 10;
 

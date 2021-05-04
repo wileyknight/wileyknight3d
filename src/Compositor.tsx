@@ -9,7 +9,7 @@ import {
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './App.css';
-import { html } from '@react-three/drei';
+//import { html } from '@react-three/drei';
 //import { lerp } from 'lerp';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -37,6 +37,12 @@ declare global {
         OrbitControls,
         typeof OrbitControls
       >;
+      effectComposer: ReactThreeFiber.Object3DNode<
+        EffectComposer,
+        typeof EffectComposer
+      >;
+      shaderPass: ReactThreeFiber.Object3DNode<ShaderPass, typeof ShaderPass>;
+      renderPass: ReactThreeFiber.Object3DNode<RenderPass, typeof RenderPass>;
       clearPass: ReactThreeFiber.Object3DNode<ClearPass, typeof ClearPass>;
       maskPass: ReactThreeFiber.Object3DNode<MaskPass, typeof MaskPass>;
       texturePass: ReactThreeFiber.Object3DNode<
@@ -120,6 +126,16 @@ function Compositor({ sceneCamera, maskCamera }) {
     return maskScene;
   }, []);
 
+  const qScene = useMemo(() => {
+    const maskScene = new THREE.Scene();
+    return maskScene;
+  }, []);
+
+  const hScene = useMemo(() => {
+    const maskScene = new THREE.Scene();
+    return maskScene;
+  }, []);
+
   useEffect(() => {
     fgComposer.current.setSize(size.width, size.height);
     bgComposer.current.setSize(size.width, size.height);
@@ -130,21 +146,25 @@ function Compositor({ sceneCamera, maskCamera }) {
     {
       environment: <SceneCircuit />,
       mask: <MaskPlane />,
-      color: 0xbabed8,
+      scene: bgScene,
+      color: 0x000d2c,
     },
     {
       environment: <Scene20Years />,
       mask: <MaskPlane />,
-      color: 0x000d2c,
+      scene: fgScene,
+      color: 0xbabed8,
     },
     {
       environment: <SceneQuantum />,
       mask: <MaskPlane />,
+      scene: qScene,
       color: 0xbabed8,
     },
     {
       environment: <SceneHyperloop />,
       mask: <MaskPlane />,
+      scene: hScene,
       color: 0x000d2c,
     },
   ];
@@ -153,13 +173,6 @@ function Compositor({ sceneCamera, maskCamera }) {
 
   let currentScene = useStore((state) => state.currentScene);
   let nextScene = useStore((state) => state.nextScene);
-
-  //if (transitioning) {
-  //  console.log('swapping scenes');
-  //  const temp = nextScene;
-  //  nextScene = currentScene;
-  //  currentScene = temp;
-  //}
 
   fgScene.background = new THREE.Color(sceneSelectors[nextScene].color);
   bgScene.background = new THREE.Color(sceneSelectors[currentScene].color);
@@ -189,11 +202,14 @@ function Compositor({ sceneCamera, maskCamera }) {
     state.gl.clear();
 
     if (bgComposer.current) {
-      bgComposer.current.render(bgScene, sceneCamera);
+      bgComposer.current.render(
+        sceneSelectors[currentScene].scene,
+        sceneCamera,
+      );
     }
     if (fgComposer.current) {
       if (transitioning) {
-        fgComposer.current.render(fgScene, sceneCamera);
+        fgComposer.current.render(sceneSelectors[nextScene].scene, sceneCamera);
       }
     }
     if (maskComposer.current) {
@@ -216,7 +232,7 @@ function Compositor({ sceneCamera, maskCamera }) {
       />
 
       {/** PORTALS */}
-      {createPortal(sceneSelectors[nextScene].mask, fgMask)}
+      {createPortal(<MaskPlane />, fgMask)}
       {createPortal(sceneSelectors[nextScene].environment, fgScene)}
       {createPortal(sceneSelectors[currentScene].environment, bgScene)}
 
