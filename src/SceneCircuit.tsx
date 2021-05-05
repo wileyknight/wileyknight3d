@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useEffect } from 'react';
 import { useLoader, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+//import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import './App.css';
 import useStore from './Store';
 
@@ -15,6 +15,7 @@ const Circuit = (props) => {
 
   const fbx = useLoader<any, string>(GLTFLoader, './wileyknight_circuit.gltf');
 
+  /*
   const loader = new GLTFLoader();
 
   // Optional: Provide a DRACOLoader instance to decode compressed mesh data
@@ -23,7 +24,7 @@ const Circuit = (props) => {
   dracoLoader.setDecoderPath(
     'https://www.gstatic.com/draco/versioned/decoders/1.4.1/draco_decoder.js',
   );
-  loader.setDRACOLoader(dracoLoader);
+  //loader.setDRACOLoader(dracoLoader);
 
   // Load a glTF resource
   loader.load(
@@ -49,7 +50,7 @@ const Circuit = (props) => {
       console.log('An error happened');
     },
   );
-
+*/
   const fanL = useRef<THREE.geometry>();
   const fanR = useRef<THREE.geometry>();
   //const liquid = useRef();

@@ -19,7 +19,6 @@ const FullScene = (props) => {
     './quantumComputer_export.gltf',
   );
 
-  console.log(fbx.nodes);
   return (
     <group
       {...props}

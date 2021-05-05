@@ -9,8 +9,6 @@ import {
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './App.css';
-//import { html } from '@react-three/drei';
-//import { lerp } from 'lerp';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
@@ -111,27 +109,27 @@ function Compositor({ sceneCamera, maskCamera }) {
     [size.width, size.height],
   );
 
-  const fgScene = useMemo(() => {
-    const fgScene = new THREE.Scene();
-    return fgScene;
-  }, []);
-
-  const bgScene = useMemo(() => {
-    const bgScene = new THREE.Scene();
-    return bgScene;
-  }, []);
-
   const fgMask = useMemo(() => {
     const maskScene = new THREE.Scene();
     return maskScene;
   }, []);
 
-  const qScene = useMemo(() => {
+  const circuitScene = useMemo(() => {
+    const circuitScene = new THREE.Scene();
+    return circuitScene;
+  }, []);
+
+  const yearsScene = useMemo(() => {
+    const yearsScene = new THREE.Scene();
+    return yearsScene;
+  }, []);
+
+  const quantumScene = useMemo(() => {
     const maskScene = new THREE.Scene();
     return maskScene;
   }, []);
 
-  const hScene = useMemo(() => {
+  const hyperloopScene = useMemo(() => {
     const maskScene = new THREE.Scene();
     return maskScene;
   }, []);
@@ -146,36 +144,37 @@ function Compositor({ sceneCamera, maskCamera }) {
     {
       environment: <SceneCircuit />,
       mask: <MaskPlane />,
-      scene: bgScene,
-      color: 0x000d2c,
+      scene: circuitScene,
+      color: 0xbabed8,
     },
     {
       environment: <Scene20Years />,
       mask: <MaskPlane />,
-      scene: fgScene,
-      color: 0xbabed8,
+      scene: yearsScene,
+      color: 0x000d2c,
     },
     {
       environment: <SceneQuantum />,
       mask: <MaskPlane />,
-      scene: qScene,
-      color: 0xbabed8,
+      scene: quantumScene,
+      color: 0x06101b,
     },
     {
       environment: <SceneHyperloop />,
       mask: <MaskPlane />,
-      scene: hScene,
-      color: 0x000d2c,
+      scene: hyperloopScene,
+      color: 0x9bcafa,
     },
   ];
 
   let transitioning = useStore((state) => state.transitioning);
-
   let currentScene = useStore((state) => state.currentScene);
   let nextScene = useStore((state) => state.nextScene);
 
-  fgScene.background = new THREE.Color(sceneSelectors[nextScene].color);
-  bgScene.background = new THREE.Color(sceneSelectors[currentScene].color);
+  yearsScene.background = new THREE.Color(sceneSelectors[0].color);
+  circuitScene.background = new THREE.Color(sceneSelectors[1].color);
+  quantumScene.background = new THREE.Color(sceneSelectors[2].color);
+  hyperloopScene.background = new THREE.Color(sceneSelectors[3].color);
 
   const pmremGenerator = new THREE.PMREMGenerator(gl);
   pmremGenerator.compileEquirectangularShader();
@@ -189,8 +188,10 @@ function Compositor({ sceneCamera, maskCamera }) {
       );
       hdrEquirect.dispose();
 
-      fgScene.environment = hdrCubeRenderTarget.texture;
-      bgScene.environment = hdrCubeRenderTarget.texture;
+      yearsScene.environment = hdrCubeRenderTarget.texture;
+      circuitScene.environment = hdrCubeRenderTarget.texture;
+      quantumScene.environment = hdrCubeRenderTarget.texture;
+      hyperloopScene.environment = hdrCubeRenderTarget.texture;
     });
 
   useFrame((state) => {
@@ -233,8 +234,14 @@ function Compositor({ sceneCamera, maskCamera }) {
 
       {/** PORTALS */}
       {createPortal(<MaskPlane />, fgMask)}
-      {createPortal(sceneSelectors[nextScene].environment, fgScene)}
-      {createPortal(sceneSelectors[currentScene].environment, bgScene)}
+      {createPortal(
+        sceneSelectors[nextScene].environment,
+        sceneSelectors[nextScene].scene,
+      )}
+      {createPortal(
+        sceneSelectors[currentScene].environment,
+        sceneSelectors[currentScene].scene,
+      )}
 
       {/** FOREGROUND PORTAL EFFECTS */}
       <effectComposer
@@ -242,7 +249,10 @@ function Compositor({ sceneCamera, maskCamera }) {
         args={[gl, fgRenderTarget]}
         renderToScreen={false}
       >
-        <renderPass attachArray="passes" args={[fgScene, sceneCamera]} />
+        <renderPass
+          attachArray="passes"
+          args={[sceneSelectors[nextScene].scene, sceneCamera]}
+        />
         <shaderPass attachArray="passes" args={[CopyShader]} />
       </effectComposer>
 
@@ -252,7 +262,10 @@ function Compositor({ sceneCamera, maskCamera }) {
         args={[gl, bgRenderTarget]}
         renderToScreen={false}
       >
-        <renderPass attachArray="passes" args={[bgScene, sceneCamera]} />
+        <renderPass
+          attachArray="passes"
+          args={[sceneSelectors[currentScene].scene, sceneCamera]}
+        />
         <shaderPass attachArray="passes" args={[CopyShader]} />
       </effectComposer>
 

@@ -25,10 +25,20 @@ export function MaskPlane() {
   }));
 
   const yRef = useRef<number>(useStore.getState().scrollY);
-  let currentScene = useStore((state) => state.currentScene);
-  let transitioning = useStore((state) => state.transitioning);
-  let timeline = useStore((state) => state.timelines);
-  let bounds = useRef<string>(useStore.getState().bounds);
+  //let currentScene = useStore((state) => state.currentScene);
+  const currentScene = useRef<number>(useStore.getState().currentScene);
+  const bounds = useRef<string>(useStore.getState().bounds);
+  const transitioning = useStore((state) => state.transitioning);
+  const timeline = useStore((state) => state.timelines);
+
+  useEffect(
+    () =>
+      useStore.subscribe(
+        (theScene: number) => (currentScene.current = theScene),
+        (state) => state.currentScene,
+      ),
+    [],
+  );
 
   useEffect(
     () =>
@@ -57,7 +67,7 @@ export function MaskPlane() {
           position: ScrollHandler(
             y,
             down,
-            currentScene,
+            currentScene.current,
             transitioning,
             timeline,
             yRef.current,
@@ -70,7 +80,7 @@ export function MaskPlane() {
           position: ScrollHandler(
             y,
             down,
-            currentScene,
+            currentScene.current,
             transitioning,
             timeline,
             yRef.current,

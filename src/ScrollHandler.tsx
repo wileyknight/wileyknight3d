@@ -27,14 +27,18 @@ export const ScrollHandler = (
         // end of scroll down boundry
         useStore.setState({ scrollY: 1 });
         useStore.setState({ transitioning: true });
-        useStore.setState({ bounds: 'low' });
         if (currentScene + 1 !== timeline.length) {
-          useStore.setState({ nextScene: currentScene });
-          useStore.setState({ currentScene: currentScene + 1 });
+          if (bounds !== 'low') {
+            useStore.setState({ nextScene: currentScene });
+            useStore.setState({ currentScene: currentScene + 1 });
+          }
         } else {
-          useStore.setState({ nextScene: currentScene });
-          useStore.setState({ currentScene: 0 });
+          if (bounds !== 'high') {
+            useStore.setState({ nextScene: currentScene });
+            useStore.setState({ currentScene: 0 });
+          }
         }
+        useStore.setState({ bounds: 'low' });
       }
     } else {
       // transitioning down
@@ -48,6 +52,7 @@ export const ScrollHandler = (
           // end of scroll
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
+          useStore.setState({ bounds: '' });
           return [0, 1, 0];
         }
       } else {
@@ -60,6 +65,7 @@ export const ScrollHandler = (
           // end of scroll
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
+          useStore.setState({ bounds: '' });
           return [0, 1, 0];
         }
       }
@@ -77,14 +83,18 @@ export const ScrollHandler = (
         // end of scroll up boundry
         useStore.setState({ scrollY: 1 });
         useStore.setState({ transitioning: true });
-        useStore.setState({ bounds: 'high' });
         if (currentScene - 1 !== -1) {
-          useStore.setState({ nextScene: currentScene });
-          useStore.setState({ currentScene: currentScene - 1 });
+          if (bounds !== 'high') {
+            useStore.setState({ nextScene: currentScene });
+            useStore.setState({ currentScene: currentScene - 1 });
+          }
         } else {
-          useStore.setState({ nextScene: currentScene });
-          useStore.setState({ currentScene: timeline.length - 1 });
+          if (bounds !== 'low') {
+            useStore.setState({ nextScene: currentScene });
+            useStore.setState({ currentScene: timeline.length - 1 });
+          }
         }
+        useStore.setState({ bounds: 'high' });
       }
       // transitioning up
     } else {
@@ -93,6 +103,7 @@ export const ScrollHandler = (
         if (yRef < divY / 4 + divY && yRef > 0) {
           // set y position
           useStore.setState({ scrollY: yRef + y });
+          useStore.setState({ bounds: '' });
           return [0, -yRef, 0];
         } else {
           // end of scroll
@@ -110,6 +121,7 @@ export const ScrollHandler = (
           // end of scroll
           useStore.setState({ scrollY: timeline[currentScene] });
           useStore.setState({ transitioning: false });
+          useStore.setState({ bounds: '' });
           return [0, 1, 0];
         }
       }
