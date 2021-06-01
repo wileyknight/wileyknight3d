@@ -1,0 +1,1158 @@
+{
+    "asset": {
+        "copyright": "(C)2021 wiley",
+        "generator": "maya2glTF v1.4.0 3d7ba8eaf03e",
+        "version": "2.0"
+    },
+    "scenes": [
+        {
+            "nodes": [
+                14,
+                12,
+                10,
+                8,
+                6,
+                4,
+                2,
+                0
+            ]
+        }
+    ],
+    "scene": 0,
+    "nodes": [
+        {
+            "name": "tube",
+            "children": [
+                1
+            ],
+            "translation": [
+                0.000007267999990290264,
+                3.806152105331421,
+                0.0
+            ]
+        },
+        {
+            "name": "tube:PIV",
+            "mesh": 0,
+            "translation": [
+                -0.000007267999990290264,
+                -3.806152105331421,
+                0.0
+            ]
+        },
+        {
+            "name": "train",
+            "children": [
+                3
+            ],
+            "translation": [
+                0.000012024000170640648,
+                2.583948373794556,
+                0.0
+            ]
+        },
+        {
+            "name": "train:PIV",
+            "mesh": 1,
+            "translation": [
+                -0.000012024000170640648,
+                -2.583948373794556,
+                0.0
+            ]
+        },
+        {
+            "name": "rail",
+            "children": [
+                5
+            ],
+            "translation": [
+                0.0000020899999526591279,
+                2.688110113143921,
+                0.0
+            ]
+        },
+        {
+            "name": "rail:PIV",
+            "mesh": 2,
+            "translation": [
+                -0.0000020899999526591279,
+                -2.688110113143921,
+                0.0
+            ]
+        },
+        {
+            "name": "pedestal",
+            "children": [
+                7
+            ],
+            "translation": [
+                0.000007090000053722179,
+                1.22207772731781,
+                0.0
+            ]
+        },
+        {
+            "name": "pedestal:PIV",
+            "mesh": 3,
+            "translation": [
+                -0.000007090000053722179,
+                -1.22207772731781,
+                0.0
+            ]
+        },
+        {
+            "name": "lockRings",
+            "children": [
+                9
+            ],
+            "translation": [
+                0.0015396620146930218,
+                3.805833578109741,
+                -0.0030700170900672676
+            ]
+        },
+        {
+            "name": "lockRings:PIV",
+            "mesh": 4,
+            "translation": [
+                -0.0015396620146930218,
+                -3.805833578109741,
+                0.0030700170900672676
+            ]
+        },
+        {
+            "name": "glass",
+            "children": [
+                11
+            ],
+            "translation": [
+                0.000012518999938038178,
+                5.299088001251221,
+                1.575000047683716
+            ]
+        },
+        {
+            "name": "glass:PIV",
+            "mesh": 5,
+            "translation": [
+                -0.000012518999938038178,
+                -5.299088001251221,
+                -1.575000047683716
+            ]
+        },
+        {
+            "name": "coupling",
+            "children": [
+                13
+            ],
+            "translation": [
+                0.000007090000053722179,
+                3.805833339691162,
+                0.0
+            ]
+        },
+        {
+            "name": "coupling:PIV",
+            "mesh": 6,
+            "translation": [
+                -0.000007090000053722179,
+                -3.805833339691162,
+                0.0
+            ]
+        },
+        {
+            "name": "car",
+            "children": [
+                15
+            ],
+            "translation": [
+                0.000012024000170640648,
+                2.583948373794556,
+                0.0
+            ]
+        },
+        {
+            "name": "car:PIV",
+            "mesh": 7,
+            "translation": [
+                -0.000012024000170640648,
+                -2.583948373794556,
+                0.0
+            ]
+        }
+    ],
+    "meshes": [
+        {
+            "name": "tubeShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 1,
+                        "POSITION": 2,
+                        "TANGENT": 3,
+                        "TEXCOORD_0": 4
+                    },
+                    "indices": 0,
+                    "mode": 4,
+                    "material": 0
+                }
+            ]
+        },
+        {
+            "name": "trainShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 6,
+                        "POSITION": 7,
+                        "TANGENT": 8,
+                        "TEXCOORD_0": 9
+                    },
+                    "indices": 5,
+                    "mode": 4,
+                    "material": 1
+                }
+            ]
+        },
+        {
+            "name": "railShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 11,
+                        "POSITION": 12,
+                        "TANGENT": 13,
+                        "TEXCOORD_0": 14
+                    },
+                    "indices": 10,
+                    "mode": 4,
+                    "material": 2
+                }
+            ]
+        },
+        {
+            "name": "pedestalShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 16,
+                        "POSITION": 17,
+                        "TANGENT": 18,
+                        "TEXCOORD_0": 19
+                    },
+                    "indices": 15,
+                    "mode": 4,
+                    "material": 0
+                }
+            ]
+        },
+        {
+            "name": "lockRingsShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 21,
+                        "POSITION": 22,
+                        "TANGENT": 23,
+                        "TEXCOORD_0": 24
+                    },
+                    "indices": 20,
+                    "mode": 4,
+                    "material": 3
+                }
+            ]
+        },
+        {
+            "name": "glassShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 26,
+                        "POSITION": 27,
+                        "TANGENT": 28,
+                        "TEXCOORD_0": 29
+                    },
+                    "indices": 25,
+                    "mode": 4,
+                    "material": 4
+                }
+            ]
+        },
+        {
+            "name": "couplingShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 31,
+                        "POSITION": 32,
+                        "TANGENT": 33,
+                        "TEXCOORD_0": 34
+                    },
+                    "indices": 30,
+                    "mode": 4,
+                    "material": 0
+                }
+            ]
+        },
+        {
+            "name": "carShape",
+            "extras": {
+                "targetNames": []
+            },
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 36,
+                        "POSITION": 37,
+                        "TANGENT": 38,
+                        "TEXCOORD_0": 39
+                    },
+                    "indices": 35,
+                    "mode": 4,
+                    "material": 1
+                }
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "tubeColor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        },
+        {
+            "name": "trainColor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1.0
+                ],
+                "baseColorTexture": {
+                    "index": 0
+                },
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        },
+        {
+            "name": "railColor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.12614108622074128,
+                    0.12614108622074128,
+                    0.12614108622074128,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        },
+        {
+            "name": "goldColor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.16597510874271394,
+                    0.16597510874271394,
+                    0.0,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        },
+        {
+            "name": "glassColor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.041493773460388187
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            },
+            "alphaMode": "BLEND"
+        }
+    ],
+    "textures": [
+        {
+            "sampler": 0,
+            "source": 0
+        }
+    ],
+    "images": [
+        {
+            "uri": "trainUV.jpg"
+        }
+    ],
+    "samplers": [
+        {
+            "magFilter": 9729,
+            "minFilter": 9987,
+            "wrapS": 10497,
+            "wrapT": 10497
+        }
+    ],
+    "accessors": [
+        {
+            "name": "tubeShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 14688,
+            "max": [
+                3039
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "tubeShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3040,
+            "max": [
+                0.9999963641166688,
+                1.0,
+                0.999848246574402
+            ],
+            "min": [
+                -0.9999963641166688,
+                -1.0,
+                -0.9877281785011292
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "tubeShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 36480,
+            "componentType": 5126,
+            "count": 3040,
+            "max": [
+                -87.15396118164063,
+                5.306323528289795,
+                15.930472373962405
+            ],
+            "min": [
+                -91.5,
+                2.3063242435455324,
+                0.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "tubeShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3040,
+            "max": [
+                0.9999984502792358,
+                1.0,
+                0.17335182428359986,
+                1.0
+            ],
+            "min": [
+                -0.9999984502792358,
+                -1.0,
+                -0.17334100604057313,
+                -1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "tubeShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3040,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "trainShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 29376,
+            "componentType": 5123,
+            "count": 10578,
+            "max": [
+                2061
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "trainShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 72960,
+            "componentType": 5126,
+            "count": 2062,
+            "max": [
+                0.999999225139618,
+                1.0,
+                0.9280439019203186
+            ],
+            "min": [
+                -0.9999992847442628,
+                -1.0,
+                -0.9980043768882752
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "trainShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 97704,
+            "componentType": 5126,
+            "count": 2062,
+            "max": [
+                -88.9434585571289,
+                4.981174468994141,
+                3.4780514240264899
+            ],
+            "min": [
+                -90.99989318847656,
+                2.584120273590088,
+                -9.954845428466797
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "trainShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 48640,
+            "componentType": 5126,
+            "count": 2062,
+            "max": [
+                0.9980043172836304,
+                0.02447115443646908,
+                0.1045735701918602,
+                1.0
+            ],
+            "min": [
+                -0.999621331691742,
+                -0.9284768104553224,
+                -1.0,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "trainShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 24320,
+            "componentType": 5126,
+            "count": 2062,
+            "max": [
+                1.0,
+                0.9888843297958374
+            ],
+            "min": [
+                0.0,
+                0.0120430588722229
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "railShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 50532,
+            "componentType": 5123,
+            "count": 1716,
+            "max": [
+                1135
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "railShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 122448,
+            "componentType": 5126,
+            "count": 1136,
+            "max": [
+                0.9999831914901732,
+                1.0,
+                0.9848604202270508
+            ],
+            "min": [
+                -0.9999831914901732,
+                -1.0,
+                -1.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "railShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 136080,
+            "componentType": 5126,
+            "count": 1136,
+            "max": [
+                -88.16766357421875,
+                2.945847272872925,
+                15.752713203430176
+            ],
+            "min": [
+                -90.47058868408205,
+                2.430716991424561,
+                0.0
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "railShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 81632,
+            "componentType": 5126,
+            "count": 1136,
+            "max": [
+                1.0,
+                1.0,
+                0.9999992847442628,
+                1.0
+            ],
+            "min": [
+                -0.999932587146759,
+                -1.0,
+                -0.9999993443489076,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "railShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 40816,
+            "componentType": 5126,
+            "count": 1136,
+            "max": [
+                0.875,
+                1.0
+            ],
+            "min": [
+                0.125,
+                5.99999978589949e-8
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "pedestalShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 53964,
+            "componentType": 5123,
+            "count": 636,
+            "max": [
+                367
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "pedestalShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 149712,
+            "componentType": 5126,
+            "count": 368,
+            "max": [
+                0.9995373487472534,
+                1.0,
+                0.9999831914901732
+            ],
+            "min": [
+                -0.999535858631134,
+                -1.0,
+                -0.9999831914901732
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "pedestalShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 154128,
+            "componentType": 5126,
+            "count": 368,
+            "max": [
+                -88.69678497314453,
+                2.737715482711792,
+                3.273823976516724
+            ],
+            "min": [
+                -91.3001708984375,
+                -8.899999670575198e-8,
+                -3.273823976516724
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "pedestalShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 99808,
+            "componentType": 5126,
+            "count": 368,
+            "max": [
+                1.0,
+                0.999778926372528,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -0.9999831914901732,
+                -0.9996553659439088,
+                -1.0,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "pedestalShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 49904,
+            "componentType": 5126,
+            "count": 368,
+            "max": [
+                0.875,
+                1.0
+            ],
+            "min": [
+                0.125,
+                0.0
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "lockRingsShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 55236,
+            "componentType": 5123,
+            "count": 3072,
+            "max": [
+                1039
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "lockRingsShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 158544,
+            "componentType": 5126,
+            "count": 1040,
+            "max": [
+                0.9999845027923584,
+                1.0,
+                0.9999923706054688
+            ],
+            "min": [
+                -0.999984622001648,
+                -1.0,
+                -0.999992609024048
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "lockRingsShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 171024,
+            "componentType": 5126,
+            "count": 1040,
+            "max": [
+                -88.2591323852539,
+                5.544497489929199,
+                0.6687135696411133
+            ],
+            "min": [
+                -91.73780822753906,
+                2.0675129890441896,
+                -0.6748535633087158
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "lockRingsShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 105696,
+            "componentType": 5126,
+            "count": 1040,
+            "max": [
+                0.999987542629242,
+                1.0,
+                0.007324635982513428,
+                1.0
+            ],
+            "min": [
+                -0.999987542629242,
+                -1.0,
+                -0.007324522826820612,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "lockRingsShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 52848,
+            "componentType": 5126,
+            "count": 1040,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "glassShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 61380,
+            "componentType": 5123,
+            "count": 14784,
+            "max": [
+                2899
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "glassShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 183504,
+            "componentType": 5126,
+            "count": 2900,
+            "max": [
+                0.9996916651725768,
+                1.0,
+                0.9877283573150636
+            ],
+            "min": [
+                -0.9996943473815918,
+                -1.0,
+                -0.999848246574402
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "glassShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 218304,
+            "componentType": 5126,
+            "count": 2900,
+            "max": [
+                -87.4560775756836,
+                5.306482315063477,
+                14.297310829162598
+            ],
+            "min": [
+                -91.47883605957033,
+                3.088511466979981,
+                1.556247353553772
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "glassShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 122336,
+            "componentType": 5126,
+            "count": 2900,
+            "max": [
+                0.999848246574402,
+                1.0,
+                0.15475153923034669,
+                1.0
+            ],
+            "min": [
+                -0.9998219013214112,
+                -1.0,
+                -0.1561820358037949,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "glassShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 61168,
+            "componentType": 5126,
+            "count": 2900,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "couplingShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 90948,
+            "componentType": 5123,
+            "count": 1536,
+            "max": [
+                519
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "couplingShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 253104,
+            "componentType": 5126,
+            "count": 520,
+            "max": [
+                1.0,
+                1.0,
+                0.999968945980072
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -0.999968945980072
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "couplingShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 259344,
+            "componentType": 5126,
+            "count": 520,
+            "max": [
+                -88.31327819824219,
+                5.489961624145508,
+                0.7266318202018738
+            ],
+            "min": [
+                -91.68109130859377,
+                2.122049331665039,
+                -0.7266318202018738
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "couplingShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 168736,
+            "componentType": 5126,
+            "count": 520,
+            "max": [
+                0.9999966025352478,
+                1.0,
+                0.007890882901847363,
+                1.0
+            ],
+            "min": [
+                -0.9999966025352478,
+                -1.0,
+                -0.007891024462878704,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "couplingShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 84368,
+            "componentType": 5126,
+            "count": 520,
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ],
+            "type": "VEC2"
+        },
+        {
+            "name": "carShape#0/indices",
+            "bufferView": 0,
+            "byteOffset": 94020,
+            "componentType": 5123,
+            "count": 6504,
+            "max": [
+                1334
+            ],
+            "min": [
+                0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "carShape#0/vertices/NORMAL",
+            "bufferView": 1,
+            "byteOffset": 265584,
+            "componentType": 5126,
+            "count": 1335,
+            "max": [
+                0.9991188049316406,
+                1.0,
+                0.92019522190094
+            ],
+            "min": [
+                -0.9991186261177064,
+                -1.0,
+                -0.9278807044029236
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "carShape#0/vertices/POSITION",
+            "bufferView": 1,
+            "byteOffset": 281604,
+            "componentType": 5126,
+            "count": 1335,
+            "max": [
+                -88.16015625,
+                4.981174468994141,
+                12.780500411987305
+            ],
+            "min": [
+                -90.92906188964844,
+                2.584120273590088,
+                3.001562356948853
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "carShape#0/vertices/TANGENT",
+            "bufferView": 2,
+            "byteOffset": 177056,
+            "componentType": 5126,
+            "count": 1335,
+            "max": [
+                0.052370574325323108,
+                0.9284781217575072,
+                0.3711713552474976,
+                1.0
+            ],
+            "min": [
+                -0.1381248384714127,
+                -0.00047768300282768905,
+                -0.9993420839309692,
+                1.0
+            ],
+            "type": "VEC4"
+        },
+        {
+            "name": "carShape#0/vertices/TEXCOORD_0",
+            "bufferView": 3,
+            "byteOffset": 88528,
+            "componentType": 5126,
+            "count": 1335,
+            "max": [
+                0.9902764558792114,
+                0.9890298843383788
+            ],
+            "min": [
+                0.011416792869567873,
+                0.43604469299316409
+            ],
+            "type": "VEC2"
+        }
+    ],
+    "bufferViews": [
+        {
+            "name": "hyperloop_train_export/data/indices-2",
+            "buffer": 0,
+            "byteOffset": 595248,
+            "byteLength": 107028,
+            "target": 34963
+        },
+        {
+            "name": "hyperloop_train_export/data/vertices-12",
+            "buffer": 0,
+            "byteOffset": 198416,
+            "byteLength": 297624,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "name": "hyperloop_train_export/data/vertices-16",
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 198416,
+            "byteStride": 16,
+            "target": 34962
+        },
+        {
+            "name": "hyperloop_train_export/data/vertices-8",
+            "buffer": 0,
+            "byteOffset": 496040,
+            "byteLength": 99208,
+            "byteStride": 8,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "name": "hyperloop_train_export/data",
+            "byteLength": 702276,
+            "uri": "hyperloop_train_export0.bin"
+        }
+    ]
+}

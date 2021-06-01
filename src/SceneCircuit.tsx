@@ -1,9 +1,7 @@
 import React, { Suspense, useRef, useEffect } from 'react';
-import { useLoader, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-//import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import './App.css';
 import useStore from './Store';
 
 const Loading = () => {
@@ -11,51 +9,9 @@ const Loading = () => {
 };
 
 const Circuit = (props) => {
-  //const { gl, size } = useThree();
-
   const fbx = useLoader<any, string>(GLTFLoader, './wileyknight_circuit.gltf');
-
-  /*
-  const loader = new GLTFLoader();
-
-  // Optional: Provide a DRACOLoader instance to decode compressed mesh data
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderConfig({ type: 'js' });
-  dracoLoader.setDecoderPath(
-    'https://www.gstatic.com/draco/versioned/decoders/1.4.1/draco_decoder.js',
-  );
-  //loader.setDRACOLoader(dracoLoader);
-
-  // Load a glTF resource
-  loader.load(
-    // resource URL
-    './wk_circuit_draco.gltf',
-    // called when the resource is loaded
-    function (gltf) {
-      //scene.add(gltf.scene);
-
-      //gltf.animations; // Array<THREE.AnimationClip>
-      //gltf.scene; // THREE.Group
-      //gltf.scenes; // Array<THREE.Group>
-      //gltf.cameras; // Array<THREE.Camera>
-      //gltf.asset; // Object
-      console.log(gltf);
-    },
-    // called while loading is progressing
-    function (xhr) {
-      console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-    },
-    // called when loading has errors
-    function (error) {
-      console.log('An error happened');
-    },
-  );
-*/
   const fanL = useRef<THREE.geometry>();
   const fanR = useRef<THREE.geometry>();
-  //const liquid = useRef();
-
-  //let cubeMaterial3: THREE.Texture;
 
   const yRef = useRef<number>(useStore.getState().scrollY);
   const yPrev = useRef<number>(1);
@@ -96,13 +52,13 @@ const Circuit = (props) => {
       if (!transitioning) {
         if (yRef.current > 0 && yRef.current < 85) {
           if (liquidRefs[yPrev.current] !== undefined) {
-            liquidRefs[yPrev.current].current.position.z = 200;
+            liquidRefs[yPrev.current].current.position.z = 400;
           }
           liquidRefs[yRef.current].current.position.z = 0;
         }
       }
     }
-  });
+  }, 1);
 
   return (
     <group {...props} dispose={null} position={[0, -160, 120]}>
@@ -175,14 +131,14 @@ const Circuit = (props) => {
         <meshStandardMaterial
           attach="material"
           color={0xdecb88}
-          roughness={0.3}
-          metalness={0.5}
+          roughness={0.1}
+          metalness={1}
         />
       </mesh>
       <mesh geometry={fbx.nodes.solderPIV.geometry}>
         <meshStandardMaterial
           attach="material"
-          color={0x999999}
+          color={0xcccccc}
           roughness={0.1}
           metalness={1}
         />
@@ -198,9 +154,9 @@ const Circuit = (props) => {
       <mesh geometry={fbx.nodes.pcie_slotPIV.geometry}>
         <meshStandardMaterial
           attach="material"
-          color={0x1f2327}
+          color={0x363531}
           roughness={0.3}
-          metalness={0.5}
+          metalness={0.9}
         />
       </mesh>
       <mesh geometry={fbx.nodes.cpubackplatePIV.geometry}>
@@ -230,9 +186,11 @@ const Circuit = (props) => {
       <mesh geometry={fbx.nodes.glowsurfacePIV.geometry}>
         <meshStandardMaterial
           attach="material"
-          color={0xdecb88}
+          color={0xffff00}
           roughness={0.2}
           metalness={1}
+          emissive={new THREE.Color(0xffff00)}
+          emissiveIntensity={2}
         />
       </mesh>
       <mesh
@@ -242,7 +200,7 @@ const Circuit = (props) => {
         <meshStandardMaterial
           attach="material"
           color={0x363531}
-          roughness={0}
+          roughness={0.3}
           metalness={0.9}
         />
       </mesh>
@@ -287,7 +245,7 @@ const Circuit = (props) => {
         <meshStandardMaterial
           attach="material"
           color={0xdecb88}
-          roughness={0}
+          roughness={0.1}
           metalness={1}
         />
       </mesh>
@@ -296,7 +254,7 @@ const Circuit = (props) => {
           <mesh
             ref={liquidRefs[index + 1]}
             geometry={liquidMesh}
-            position-z={200}
+            position-z={400}
             key={'liquid' + index}
           >
             <meshPhongMaterial
@@ -305,7 +263,7 @@ const Circuit = (props) => {
               emissiveIntensity={1}
               refractionRatio={0.98}
               reflectivity={0.9}
-              opacity={0.7}
+              opacity={0.5}
               transparent={true}
               envMap={textureCube}
             />
@@ -316,6 +274,8 @@ const Circuit = (props) => {
   );
 };
 
+//FRONT END DEVELOPER
+//Powerful React driven interactions utilizing cutting-edge technologies.
 function SceneCircuit() {
   return (
     <>

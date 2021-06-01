@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
-import { useLoader } from '@react-three/fiber';
+import React, { Suspense, useRef } from 'react';
+import * as THREE from 'three';
+import { useLoader, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function SceneQuantum() {
@@ -19,9 +20,18 @@ const FullScene = (props) => {
     './quantumComputer_export.gltf',
   );
 
+  const qc = useRef<THREE.geometry>();
+
+  useFrame(() => {
+    if (qc.current !== undefined && qc.current !== null) {
+      qc.current.rotation.y += 0.001;
+    }
+  });
+
   return (
     <group
       {...props}
+      ref={qc}
       dispose={null}
       position={[0, -40, 0]}
       rotateX={-90}

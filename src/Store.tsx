@@ -13,12 +13,13 @@ const useStore = create<State>((set) => ({
   scrollY: 1,
   currentScene: 0,
   nextScene: 0,
+  active: 'bg',
   transitioning: false,
   timelines: [
-    window.innerHeight / 2,
-    window.innerHeight / 2,
-    window.innerHeight / 2,
-    window.innerHeight / 2,
+    window.innerHeight,
+    window.innerHeight,
+    window.innerHeight,
+    window.innerHeight,
   ],
   bounds: '',
 }));

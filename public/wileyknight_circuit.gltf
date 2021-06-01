@@ -7,91 +7,92 @@
     "scenes": [
         {
             "nodes": [
-                254,
-                252,
-                250,
-                248,
-                246,
-                244,
-                242,
-                240,
-                238,
-                236,
-                234,
-                232,
-                230,
-                228,
-                226,
-                224,
-                222,
-                220,
-                218,
-                216,
-                214,
-                212,
-                210,
-                208,
-                206,
-                204,
-                202,
-                200,
-                198,
-                196,
-                194,
-                192,
-                190,
-                188,
-                186,
-                184,
-                182,
-                180,
-                178,
-                176,
-                174,
-                172,
-                170,
-                168,
-                166,
-                164,
-                162,
-                160,
-                158,
-                156,
-                154,
-                152,
-                150,
-                148,
-                146,
-                144,
-                142,
-                140,
-                138,
-                136,
-                134,
-                132,
-                130,
-                128,
-                126,
-                124,
-                122,
-                120,
-                118,
-                116,
-                114,
-                112,
-                110,
-                108,
-                106,
-                104,
-                102,
-                100,
-                98,
-                96,
-                94,
-                92,
-                90,
-                88,
-                86,
+                255,
+                253,
+                251,
+                249,
+                247,
+                245,
+                243,
+                241,
+                239,
+                237,
+                235,
+                233,
+                231,
+                229,
+                227,
+                225,
+                223,
+                221,
+                219,
+                217,
+                215,
+                213,
+                211,
+                209,
+                207,
+                205,
+                203,
+                201,
+                199,
+                197,
+                195,
+                193,
+                191,
+                189,
+                187,
+                185,
+                183,
+                181,
+                179,
+                177,
+                175,
+                173,
+                171,
+                169,
+                167,
+                165,
+                163,
+                161,
+                159,
+                157,
+                155,
+                153,
+                151,
+                149,
+                147,
+                145,
+                143,
+                141,
+                139,
+                137,
+                135,
+                133,
+                131,
+                129,
+                127,
+                125,
+                123,
+                121,
+                119,
+                117,
+                115,
+                113,
+                111,
+                109,
+                107,
+                105,
+                103,
+                101,
+                99,
+                97,
+                95,
+                93,
+                91,
+                89,
+                87,
+                85,
                 84,
                 82,
                 80,
@@ -981,9 +982,24 @@
             ]
         },
         {
+            "name": "camera1",
+            "translation": [
+                0.0,
+                129.5773162841797,
+                -32.78856658935547
+            ],
+            "rotation": [
+                0.2100427895784378,
+                0.0,
+                0.0,
+                0.977692186832428
+            ],
+            "camera": 0
+        },
+        {
             "name": "bifrostLiquid1Mesh9",
             "children": [
-                85
+                86
             ],
             "translation": [
                 0.0,
@@ -1003,7 +1019,7 @@
         {
             "name": "bifrostLiquid1Mesh85",
             "children": [
-                87
+                88
             ],
             "translation": [
                 0.0,
@@ -1023,7 +1039,7 @@
         {
             "name": "bifrostLiquid1Mesh84",
             "children": [
-                89
+                90
             ],
             "translation": [
                 0.0,
@@ -1043,7 +1059,7 @@
         {
             "name": "bifrostLiquid1Mesh83",
             "children": [
-                91
+                92
             ],
             "translation": [
                 0.0,
@@ -1063,7 +1079,7 @@
         {
             "name": "bifrostLiquid1Mesh82",
             "children": [
-                93
+                94
             ],
             "translation": [
                 0.0,
@@ -1083,7 +1099,7 @@
         {
             "name": "bifrostLiquid1Mesh81",
             "children": [
-                95
+                96
             ],
             "translation": [
                 0.0,
@@ -1103,7 +1119,7 @@
         {
             "name": "bifrostLiquid1Mesh80",
             "children": [
-                97
+                98
             ],
             "translation": [
                 0.0,
@@ -1123,7 +1139,7 @@
         {
             "name": "bifrostLiquid1Mesh8",
             "children": [
-                99
+                100
             ],
             "translation": [
                 0.0,
@@ -1143,7 +1159,7 @@
         {
             "name": "bifrostLiquid1Mesh79",
             "children": [
-                101
+                102
             ],
             "translation": [
                 0.0,
@@ -1163,7 +1179,7 @@
         {
             "name": "bifrostLiquid1Mesh78",
             "children": [
-                103
+                104
             ],
             "translation": [
                 0.0,
@@ -1183,7 +1199,7 @@
         {
             "name": "bifrostLiquid1Mesh77",
             "children": [
-                105
+                106
             ],
             "translation": [
                 0.0,
@@ -1203,7 +1219,7 @@
         {
             "name": "bifrostLiquid1Mesh76",
             "children": [
-                107
+                108
             ],
             "translation": [
                 0.0,
@@ -1223,7 +1239,7 @@
         {
             "name": "bifrostLiquid1Mesh75",
             "children": [
-                109
+                110
             ],
             "translation": [
                 0.0,
@@ -1243,7 +1259,7 @@
         {
             "name": "bifrostLiquid1Mesh74",
             "children": [
-                111
+                112
             ],
             "translation": [
                 0.0,
@@ -1263,7 +1279,7 @@
         {
             "name": "bifrostLiquid1Mesh73",
             "children": [
-                113
+                114
             ],
             "translation": [
                 0.0,
@@ -1283,7 +1299,7 @@
         {
             "name": "bifrostLiquid1Mesh72",
             "children": [
-                115
+                116
             ],
             "translation": [
                 0.0,
@@ -1303,7 +1319,7 @@
         {
             "name": "bifrostLiquid1Mesh71",
             "children": [
-                117
+                118
             ],
             "translation": [
                 0.0,
@@ -1323,7 +1339,7 @@
         {
             "name": "bifrostLiquid1Mesh70",
             "children": [
-                119
+                120
             ],
             "translation": [
                 0.0,
@@ -1343,7 +1359,7 @@
         {
             "name": "bifrostLiquid1Mesh7",
             "children": [
-                121
+                122
             ],
             "translation": [
                 0.0,
@@ -1363,7 +1379,7 @@
         {
             "name": "bifrostLiquid1Mesh69",
             "children": [
-                123
+                124
             ],
             "translation": [
                 0.0,
@@ -1383,7 +1399,7 @@
         {
             "name": "bifrostLiquid1Mesh68",
             "children": [
-                125
+                126
             ],
             "translation": [
                 0.0,
@@ -1403,7 +1419,7 @@
         {
             "name": "bifrostLiquid1Mesh67",
             "children": [
-                127
+                128
             ],
             "translation": [
                 0.0,
@@ -1423,7 +1439,7 @@
         {
             "name": "bifrostLiquid1Mesh66",
             "children": [
-                129
+                130
             ],
             "translation": [
                 0.0,
@@ -1443,7 +1459,7 @@
         {
             "name": "bifrostLiquid1Mesh65",
             "children": [
-                131
+                132
             ],
             "translation": [
                 0.0,
@@ -1463,7 +1479,7 @@
         {
             "name": "bifrostLiquid1Mesh64",
             "children": [
-                133
+                134
             ],
             "translation": [
                 0.0,
@@ -1483,7 +1499,7 @@
         {
             "name": "bifrostLiquid1Mesh63",
             "children": [
-                135
+                136
             ],
             "translation": [
                 0.0,
@@ -1503,7 +1519,7 @@
         {
             "name": "bifrostLiquid1Mesh62",
             "children": [
-                137
+                138
             ],
             "translation": [
                 0.0,
@@ -1523,7 +1539,7 @@
         {
             "name": "bifrostLiquid1Mesh61",
             "children": [
-                139
+                140
             ],
             "translation": [
                 0.0,
@@ -1543,7 +1559,7 @@
         {
             "name": "bifrostLiquid1Mesh60",
             "children": [
-                141
+                142
             ],
             "translation": [
                 0.0,
@@ -1563,7 +1579,7 @@
         {
             "name": "bifrostLiquid1Mesh6",
             "children": [
-                143
+                144
             ],
             "translation": [
                 0.0,
@@ -1583,7 +1599,7 @@
         {
             "name": "bifrostLiquid1Mesh59",
             "children": [
-                145
+                146
             ],
             "translation": [
                 0.0,
@@ -1603,7 +1619,7 @@
         {
             "name": "bifrostLiquid1Mesh58",
             "children": [
-                147
+                148
             ],
             "translation": [
                 0.0,
@@ -1623,7 +1639,7 @@
         {
             "name": "bifrostLiquid1Mesh57",
             "children": [
-                149
+                150
             ],
             "translation": [
                 0.0,
@@ -1643,7 +1659,7 @@
         {
             "name": "bifrostLiquid1Mesh56",
             "children": [
-                151
+                152
             ],
             "translation": [
                 0.0,
@@ -1663,7 +1679,7 @@
         {
             "name": "bifrostLiquid1Mesh55",
             "children": [
-                153
+                154
             ],
             "translation": [
                 0.0,
@@ -1683,7 +1699,7 @@
         {
             "name": "bifrostLiquid1Mesh54",
             "children": [
-                155
+                156
             ],
             "translation": [
                 0.0,
@@ -1703,7 +1719,7 @@
         {
             "name": "bifrostLiquid1Mesh53",
             "children": [
-                157
+                158
             ],
             "translation": [
                 0.0,
@@ -1723,7 +1739,7 @@
         {
             "name": "bifrostLiquid1Mesh52",
             "children": [
-                159
+                160
             ],
             "translation": [
                 0.0,
@@ -1743,7 +1759,7 @@
         {
             "name": "bifrostLiquid1Mesh51",
             "children": [
-                161
+                162
             ],
             "translation": [
                 0.0,
@@ -1763,7 +1779,7 @@
         {
             "name": "bifrostLiquid1Mesh50",
             "children": [
-                163
+                164
             ],
             "translation": [
                 0.0,
@@ -1783,7 +1799,7 @@
         {
             "name": "bifrostLiquid1Mesh5",
             "children": [
-                165
+                166
             ],
             "translation": [
                 0.0,
@@ -1803,7 +1819,7 @@
         {
             "name": "bifrostLiquid1Mesh49",
             "children": [
-                167
+                168
             ],
             "translation": [
                 0.0,
@@ -1823,7 +1839,7 @@
         {
             "name": "bifrostLiquid1Mesh48",
             "children": [
-                169
+                170
             ],
             "translation": [
                 0.0,
@@ -1843,7 +1859,7 @@
         {
             "name": "bifrostLiquid1Mesh47",
             "children": [
-                171
+                172
             ],
             "translation": [
                 0.0,
@@ -1863,7 +1879,7 @@
         {
             "name": "bifrostLiquid1Mesh46",
             "children": [
-                173
+                174
             ],
             "translation": [
                 0.0,
@@ -1883,7 +1899,7 @@
         {
             "name": "bifrostLiquid1Mesh45",
             "children": [
-                175
+                176
             ],
             "translation": [
                 0.0,
@@ -1903,7 +1919,7 @@
         {
             "name": "bifrostLiquid1Mesh44",
             "children": [
-                177
+                178
             ],
             "translation": [
                 0.0,
@@ -1923,7 +1939,7 @@
         {
             "name": "bifrostLiquid1Mesh43",
             "children": [
-                179
+                180
             ],
             "translation": [
                 0.0,
@@ -1943,7 +1959,7 @@
         {
             "name": "bifrostLiquid1Mesh42",
             "children": [
-                181
+                182
             ],
             "translation": [
                 0.0,
@@ -1963,7 +1979,7 @@
         {
             "name": "bifrostLiquid1Mesh41",
             "children": [
-                183
+                184
             ],
             "translation": [
                 0.0,
@@ -1983,7 +1999,7 @@
         {
             "name": "bifrostLiquid1Mesh40",
             "children": [
-                185
+                186
             ],
             "translation": [
                 0.0,
@@ -2003,7 +2019,7 @@
         {
             "name": "bifrostLiquid1Mesh4",
             "children": [
-                187
+                188
             ],
             "translation": [
                 0.0,
@@ -2023,7 +2039,7 @@
         {
             "name": "bifrostLiquid1Mesh39",
             "children": [
-                189
+                190
             ],
             "translation": [
                 0.0,
@@ -2043,7 +2059,7 @@
         {
             "name": "bifrostLiquid1Mesh38",
             "children": [
-                191
+                192
             ],
             "translation": [
                 0.0,
@@ -2063,7 +2079,7 @@
         {
             "name": "bifrostLiquid1Mesh37",
             "children": [
-                193
+                194
             ],
             "translation": [
                 0.0,
@@ -2083,7 +2099,7 @@
         {
             "name": "bifrostLiquid1Mesh36",
             "children": [
-                195
+                196
             ],
             "translation": [
                 0.0,
@@ -2103,7 +2119,7 @@
         {
             "name": "bifrostLiquid1Mesh35",
             "children": [
-                197
+                198
             ],
             "translation": [
                 0.0,
@@ -2123,7 +2139,7 @@
         {
             "name": "bifrostLiquid1Mesh34",
             "children": [
-                199
+                200
             ],
             "translation": [
                 0.0,
@@ -2143,7 +2159,7 @@
         {
             "name": "bifrostLiquid1Mesh33",
             "children": [
-                201
+                202
             ],
             "translation": [
                 0.0,
@@ -2163,7 +2179,7 @@
         {
             "name": "bifrostLiquid1Mesh32",
             "children": [
-                203
+                204
             ],
             "translation": [
                 0.0,
@@ -2183,7 +2199,7 @@
         {
             "name": "bifrostLiquid1Mesh31",
             "children": [
-                205
+                206
             ],
             "translation": [
                 0.0,
@@ -2203,7 +2219,7 @@
         {
             "name": "bifrostLiquid1Mesh30",
             "children": [
-                207
+                208
             ],
             "translation": [
                 0.0,
@@ -2223,7 +2239,7 @@
         {
             "name": "bifrostLiquid1Mesh3",
             "children": [
-                209
+                210
             ],
             "translation": [
                 0.0,
@@ -2243,7 +2259,7 @@
         {
             "name": "bifrostLiquid1Mesh29",
             "children": [
-                211
+                212
             ],
             "translation": [
                 0.0,
@@ -2263,7 +2279,7 @@
         {
             "name": "bifrostLiquid1Mesh28",
             "children": [
-                213
+                214
             ],
             "translation": [
                 0.0,
@@ -2283,7 +2299,7 @@
         {
             "name": "bifrostLiquid1Mesh27",
             "children": [
-                215
+                216
             ],
             "translation": [
                 0.0,
@@ -2303,7 +2319,7 @@
         {
             "name": "bifrostLiquid1Mesh26",
             "children": [
-                217
+                218
             ],
             "translation": [
                 0.0,
@@ -2323,7 +2339,7 @@
         {
             "name": "bifrostLiquid1Mesh25",
             "children": [
-                219
+                220
             ],
             "translation": [
                 0.0,
@@ -2343,7 +2359,7 @@
         {
             "name": "bifrostLiquid1Mesh24",
             "children": [
-                221
+                222
             ],
             "translation": [
                 0.0,
@@ -2363,7 +2379,7 @@
         {
             "name": "bifrostLiquid1Mesh23",
             "children": [
-                223
+                224
             ],
             "translation": [
                 0.0,
@@ -2383,7 +2399,7 @@
         {
             "name": "bifrostLiquid1Mesh22",
             "children": [
-                225
+                226
             ],
             "translation": [
                 0.0,
@@ -2403,7 +2419,7 @@
         {
             "name": "bifrostLiquid1Mesh21",
             "children": [
-                227
+                228
             ],
             "translation": [
                 0.0,
@@ -2423,7 +2439,7 @@
         {
             "name": "bifrostLiquid1Mesh20",
             "children": [
-                229
+                230
             ],
             "translation": [
                 0.0,
@@ -2443,7 +2459,7 @@
         {
             "name": "bifrostLiquid1Mesh2",
             "children": [
-                231
+                232
             ],
             "translation": [
                 0.0,
@@ -2463,7 +2479,7 @@
         {
             "name": "bifrostLiquid1Mesh19",
             "children": [
-                233
+                234
             ],
             "translation": [
                 0.0,
@@ -2483,7 +2499,7 @@
         {
             "name": "bifrostLiquid1Mesh18",
             "children": [
-                235
+                236
             ],
             "translation": [
                 0.0,
@@ -2503,7 +2519,7 @@
         {
             "name": "bifrostLiquid1Mesh17",
             "children": [
-                237
+                238
             ],
             "translation": [
                 0.0,
@@ -2523,7 +2539,7 @@
         {
             "name": "bifrostLiquid1Mesh16",
             "children": [
-                239
+                240
             ],
             "translation": [
                 0.0,
@@ -2543,7 +2559,7 @@
         {
             "name": "bifrostLiquid1Mesh15",
             "children": [
-                241
+                242
             ],
             "translation": [
                 0.0,
@@ -2563,7 +2579,7 @@
         {
             "name": "bifrostLiquid1Mesh14",
             "children": [
-                243
+                244
             ],
             "translation": [
                 0.0,
@@ -2583,7 +2599,7 @@
         {
             "name": "bifrostLiquid1Mesh13",
             "children": [
-                245
+                246
             ],
             "translation": [
                 0.0,
@@ -2603,7 +2619,7 @@
         {
             "name": "bifrostLiquid1Mesh12",
             "children": [
-                247
+                248
             ],
             "translation": [
                 0.0,
@@ -2623,7 +2639,7 @@
         {
             "name": "bifrostLiquid1Mesh11",
             "children": [
-                249
+                250
             ],
             "translation": [
                 0.0,
@@ -2643,7 +2659,7 @@
         {
             "name": "bifrostLiquid1Mesh10",
             "children": [
-                251
+                252
             ],
             "translation": [
                 0.0,
@@ -2663,7 +2679,7 @@
         {
             "name": "bifrostLiquid1Mesh1",
             "children": [
-                253
+                254
             ],
             "translation": [
                 0.0,
@@ -2683,7 +2699,7 @@
         {
             "name": "backboard",
             "children": [
-                255
+                256
             ],
             "translation": [
                 0.0,
@@ -2699,6 +2715,17 @@
                 -58.21712875366211,
                 125.09136199951172
             ]
+        }
+    ],
+    "cameras": [
+        {
+            "perspective": {
+                "yfov": 0.6605947017669678,
+                "zfar": 10000.0,
+                "znear": 0.10000000149011612
+            },
+            "name": "cameraShape1",
+            "type": "perspective"
         }
     ],
     "meshes": [
@@ -3010,7 +3037,7 @@
                     },
                     "indices": 68,
                     "mode": 4,
-                    "material": 0
+                    "material": 1
                 }
             ]
         },
@@ -3103,7 +3130,7 @@
                     },
                     "indices": 92,
                     "mode": 4,
-                    "material": 1
+                    "material": 0
                 }
             ]
         },
@@ -3122,7 +3149,7 @@
                     },
                     "indices": 97,
                     "mode": 4,
-                    "material": 1
+                    "material": 0
                 }
             ]
         },
@@ -3410,7 +3437,7 @@
                     },
                     "indices": 162,
                     "mode": 4,
-                    "material": 0
+                    "material": 2
                 },
                 {
                     "attributes": {
@@ -3422,7 +3449,7 @@
                     },
                     "indices": 166,
                     "mode": 4,
-                    "material": 0
+                    "material": 2
                 }
             ]
         },
@@ -3440,7 +3467,7 @@
                     },
                     "indices": 172,
                     "mode": 4,
-                    "material": 0
+                    "material": 3
                 }
             ]
         },
@@ -4948,9 +4975,6 @@
     ],
     "materials": [
         {
-            "pbrMetallicRoughness": {}
-        },
-        {
             "name": "lambert1",
             "pbrMetallicRoughness": {
                 "baseColorFactor": [
@@ -4962,6 +4986,68 @@
                 "metallicFactor": 0.0,
                 "roughnessFactor": 1.0
             }
+        },
+        {
+            "pbrMetallicRoughness": {}
+        },
+        {
+            "name": "gold",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.6960000395774841,
+                    0.6371880769729614,
+                    0.4245600402355194,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        },
+        {
+            "name": "chrome",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.4000000059604645,
+                    0.4000000059604645,
+                    0.4000000059604645,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        }
+    ],
+    "animations": [
+        {
+            "name": "flyCam",
+            "channels": [
+                {
+                    "sampler": 0,
+                    "target": {
+                        "node": 84,
+                        "path": "translation"
+                    }
+                },
+                {
+                    "sampler": 1,
+                    "target": {
+                        "node": 84,
+                        "path": "rotation"
+                    }
+                }
+            ],
+            "samplers": [
+                {
+                    "input": 445,
+                    "interpolation": "LINEAR",
+                    "output": 446
+                },
+                {
+                    "input": 445,
+                    "interpolation": "LINEAR",
+                    "output": 447
+                }
+            ]
         }
     ],
     "accessors": [
@@ -5160,7 +5246,7 @@
             "componentType": 5126,
             "count": 1452,
             "max": [
-                44.80533981323242,
+                46.9561767578125,
                 206.78880310058598,
                 -113.94082641601564
             ],
@@ -5178,7 +5264,7 @@
             "componentType": 5126,
             "count": 1452,
             "max": [
-                0.04833711311221123,
+                0.04833704978227616,
                 1.0,
                 1.0,
                 1.0
@@ -7923,7 +8009,7 @@
                 -117.5
             ],
             "min": [
-                -23.633956909179689,
+                -24.38093948364258,
                 181.6161651611328,
                 -118.0
             ],
@@ -12526,20 +12612,72 @@
                 0.0
             ],
             "type": "VEC2"
+        },
+        {
+            "name": "flyCam/anim/frames",
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 400,
+            "max": [
+                16.625
+            ],
+            "min": [
+                0.0
+            ],
+            "type": "SCALAR"
+        },
+        {
+            "name": "camera1/anim/flyCam/T",
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 400,
+            "max": [
+                0.0,
+                245.3570251464844,
+                88.94115447998047
+            ],
+            "min": [
+                0.0,
+                129.5773162841797,
+                -32.78856658935547
+            ],
+            "type": "VEC3"
+        },
+        {
+            "name": "camera1/anim/flyCam/R",
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 400,
+            "max": [
+                0.2100427895784378,
+                0.0,
+                0.0,
+                0.9999998807907105
+            ],
+            "min": [
+                -0.18329159915447236,
+                0.0,
+                0.0,
+                0.977692186832428
+            ],
+            "type": "VEC4"
         }
     ],
     "bufferViews": [
         {
             "name": "wileyknight_circuit/data/indices-2",
             "buffer": 0,
-            "byteOffset": 12660984,
+            "byteOffset": 12673784,
             "byteLength": 4771632,
             "target": 34963
         },
         {
             "name": "wileyknight_circuit/data/vertices-16",
             "buffer": 0,
-            "byteOffset": 0,
+            "byteOffset": 6400,
             "byteLength": 1623968,
             "byteStride": 16,
             "target": 34962
@@ -12547,7 +12685,7 @@
         {
             "name": "wileyknight_circuit/data/vertices-12",
             "buffer": 0,
-            "byteOffset": 1623968,
+            "byteOffset": 1635168,
             "byteLength": 10978584,
             "byteStride": 12,
             "target": 34962
@@ -12555,16 +12693,34 @@
         {
             "name": "wileyknight_circuit/data/vertices-8",
             "buffer": 0,
-            "byteOffset": 12602552,
+            "byteOffset": 12613752,
             "byteLength": 58432,
             "byteStride": 8,
             "target": 34962
+        },
+        {
+            "name": "wileyknight_circuit/data/generic-4",
+            "buffer": 0,
+            "byteOffset": 12672184,
+            "byteLength": 1600
+        },
+        {
+            "name": "wileyknight_circuit/data/generic-12",
+            "buffer": 0,
+            "byteOffset": 1630368,
+            "byteLength": 4800
+        },
+        {
+            "name": "wileyknight_circuit/data/generic-16",
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 6400
         }
     ],
     "buffers": [
         {
             "name": "wileyknight_circuit/data",
-            "byteLength": 17432616,
+            "byteLength": 17445416,
             "uri": "wileyknight_circuit0.bin"
         }
     ]

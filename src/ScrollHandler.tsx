@@ -11,8 +11,9 @@ export const ScrollHandler = (
   yRef: number,
   bounds: string,
 ): V3 => {
-  const divY = window.innerHeight / 10;
+  const divY = window.innerHeight;
   let maskPosition = 0;
+  const maskHeight = divY / 4 + divY;
 
   if (down === 1) {
     // DOWN
@@ -20,11 +21,13 @@ export const ScrollHandler = (
       if (yRef < timeline[currentScene]) {
         // set y position
         useStore.setState({ scrollY: yRef + y });
+        console.log(yRef + y);
         if (maskPosition !== -divY) {
           maskPosition = -divY;
         }
       } else {
         // end of scroll down boundry
+        console.log('end of boundry', yRef, timeline[currentScene]);
         useStore.setState({ scrollY: 1 });
         useStore.setState({ transitioning: true });
         if (currentScene + 1 !== timeline.length) {
@@ -44,12 +47,14 @@ export const ScrollHandler = (
       // transitioning down
       if (bounds === 'low') {
         // top of screen
-        if (yRef < divY / 4 + divY && yRef > 0) {
+        if (yRef < maskHeight && yRef > 0) {
           // set y position
           useStore.setState({ scrollY: yRef + y });
-          return [0, -yRef, 0];
+          console.log('down', yRef + y, maskHeight - yRef, bounds);
+          return [0, maskHeight - yRef, 0];
         } else {
           // end of scroll
+          console.log('end trasition down');
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
           useStore.setState({ bounds: '' });
@@ -57,12 +62,14 @@ export const ScrollHandler = (
         }
       } else {
         // reverse direction
-        if (yRef > -(divY / 4 + divY) && yRef < 0) {
+        if (yRef > -maskHeight && yRef < 0) {
           // set y position
           useStore.setState({ scrollY: yRef + y });
-          return [0, -yRef, 0];
+          console.log('reverse', bounds, yRef, -maskHeight, maskHeight - yRef);
+          return [0, maskHeight - yRef, 0];
         } else {
           // end of scroll
+          console.log('reverse reset');
           useStore.setState({ scrollY: 1 });
           useStore.setState({ transitioning: false });
           useStore.setState({ bounds: '' });
@@ -76,6 +83,7 @@ export const ScrollHandler = (
       if (yRef > 0) {
         // set y position
         useStore.setState({ scrollY: yRef + y });
+        console.log(yRef + y);
         if (maskPosition !== divY) {
           maskPosition = divY;
         }
@@ -100,25 +108,28 @@ export const ScrollHandler = (
     } else {
       if (bounds === 'low') {
         // top of screen
-        if (yRef < divY / 4 + divY && yRef > 0) {
+        if (yRef < maskHeight && yRef > 0) {
           // set y position
+          console.log('reverse', yRef, maskHeight, bounds);
           useStore.setState({ scrollY: yRef + y });
-          useStore.setState({ bounds: '' });
           return [0, -yRef, 0];
         } else {
           // end of scroll
           useStore.setState({ scrollY: timeline[currentScene] });
           useStore.setState({ transitioning: false });
+          useStore.setState({ bounds: '' });
           return [0, 1, 0];
         }
       } else {
-        // reverse direction
-        if (yRef > -(divY / 4 + divY)) {
+        // high bounds up scroll
+        if (yRef > -maskHeight) {
           //set y position
           useStore.setState({ scrollY: yRef + y });
-          return [0, -yRef, 0];
+          console.log('up', yRef, -maskHeight, -(maskHeight + yRef), bounds);
+          return [0, -(maskHeight + yRef), 0];
         } else {
           // end of scroll
+          console.log('reset on up');
           useStore.setState({ scrollY: timeline[currentScene] });
           useStore.setState({ transitioning: false });
           useStore.setState({ bounds: '' });

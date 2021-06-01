@@ -18,8 +18,8 @@ import {
   MaskPass,
   ClearMaskPass,
 } from 'three/examples/jsm/postprocessing/MaskPass';
-import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import { CopyShader } from 'three/examples/jsm/shaders/CopyShader';
+import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
 import useStore from './Store';
 import SceneCircuit from './SceneCircuit';
 import Scene20Years from './Scene20Years';
@@ -41,6 +41,7 @@ declare global {
       >;
       shaderPass: ReactThreeFiber.Object3DNode<ShaderPass, typeof ShaderPass>;
       renderPass: ReactThreeFiber.Object3DNode<RenderPass, typeof RenderPass>;
+      bokehPass: ReactThreeFiber.Object3DNode<BokehPass, typeof BokehPass>;
       clearPass: ReactThreeFiber.Object3DNode<ClearPass, typeof ClearPass>;
       maskPass: ReactThreeFiber.Object3DNode<MaskPass, typeof MaskPass>;
       texturePass: ReactThreeFiber.Object3DNode<
@@ -60,6 +61,7 @@ extend({
   EffectComposer,
   ShaderPass,
   TexturePass,
+  BokehPass,
   ClearPass,
   MaskPass,
   ClearMaskPass,
@@ -67,10 +69,31 @@ extend({
   RenderPass,
 });
 
-function Compositor({ sceneCamera, maskCamera }) {
-  const { gl, size } = useThree();
+function Compositor() {
+  const { gl, size, camera } = useThree();
+
+  const circuitCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(45, size.width / size.height, 1, 10000);
+  }, [size.width, size.height]);
+  circuitCamera.position.set(0, 0, 200);
+
+  const yearCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(45, size.width / size.height, 1, 10000);
+  }, [size.width, size.height]);
+  yearCamera.position.set(0, 0, 200);
+
+  const quantumCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(45, size.width / size.height, 1, 10000);
+  }, [size.width, size.height]);
+  quantumCamera.position.set(0, 0, 75);
+
+  const hyperCamera = useMemo(() => {
+    return new THREE.PerspectiveCamera(45, size.width / size.height, 1, 10000);
+  }, [size.width, size.height]);
+  hyperCamera.position.set(0, 0, 200);
 
   const controls = useRef<OrbitControls>();
+  //const controls2 = useRef<OrbitControls>();
 
   const fgComposer = useRef<THREE.WebGL1Renderer>();
   const bgComposer = useRef<THREE.WebGL1Renderer>();
@@ -114,24 +137,14 @@ function Compositor({ sceneCamera, maskCamera }) {
     return maskScene;
   }, []);
 
-  const circuitScene = useMemo(() => {
-    const circuitScene = new THREE.Scene();
-    return circuitScene;
+  const fgScene = useMemo(() => {
+    const fgScene = new THREE.Scene();
+    return fgScene;
   }, []);
 
-  const yearsScene = useMemo(() => {
-    const yearsScene = new THREE.Scene();
-    return yearsScene;
-  }, []);
-
-  const quantumScene = useMemo(() => {
-    const maskScene = new THREE.Scene();
-    return maskScene;
-  }, []);
-
-  const hyperloopScene = useMemo(() => {
-    const maskScene = new THREE.Scene();
-    return maskScene;
+  const bgScene = useMemo(() => {
+    const bgScene = new THREE.Scene();
+    return bgScene;
   }, []);
 
   useEffect(() => {
@@ -140,59 +153,66 @@ function Compositor({ sceneCamera, maskCamera }) {
     maskComposer.current.setSize(size.width, size.height);
   }, [size]);
 
-  const sceneSelectors = [
-    {
-      environment: <SceneCircuit />,
-      mask: <MaskPlane />,
-      scene: circuitScene,
-      color: 0xbabed8,
-    },
-    {
-      environment: <Scene20Years />,
-      mask: <MaskPlane />,
-      scene: yearsScene,
-      color: 0x000d2c,
-    },
-    {
-      environment: <SceneQuantum />,
-      mask: <MaskPlane />,
-      scene: quantumScene,
-      color: 0x06101b,
-    },
-    {
-      environment: <SceneHyperloop />,
-      mask: <MaskPlane />,
-      scene: hyperloopScene,
-      color: 0x9bcafa,
-    },
-  ];
+  const sceneSelectors = useMemo(() => {
+    bgScene.background = new THREE.Color(0xbabed8);
+    fgScene.background = new THREE.Color(0x000d2c);
+
+    const near = 100;
+    const far = 1000;
+    const color = 0x000d2c;
+    fgScene.fog = new THREE.Fog(color, near, far);
+
+    const pmremGenerator = new THREE.PMREMGenerator(gl);
+    pmremGenerator.compileEquirectangularShader();
+
+    new RGBELoader()
+      .setDataType(THREE.UnsignedByteType)
+      //.setPath('textures/equirectangular/')
+      .load('skySphere.hdr', function (hdrEquirect) {
+        const hdrCubeRenderTarget = pmremGenerator.fromEquirectangular(
+          hdrEquirect,
+        );
+        hdrEquirect.dispose();
+
+        bgScene.environment = hdrCubeRenderTarget.texture;
+        fgScene.environment = hdrCubeRenderTarget.texture;
+      });
+
+    return [
+      {
+        environment: <SceneCircuit />,
+        mask: <MaskPlane />,
+        camera: circuitCamera,
+      },
+      {
+        environment: <Scene20Years />,
+        mask: <MaskPlane />,
+        camera: yearCamera,
+      },
+      {
+        environment: <SceneQuantum />,
+        mask: <MaskPlane />,
+        camera: quantumCamera,
+      },
+      {
+        environment: <SceneHyperloop />,
+        mask: <MaskPlane />,
+        camera: hyperCamera,
+      },
+    ];
+  }, [
+    fgScene,
+    circuitCamera,
+    bgScene,
+    yearCamera,
+    quantumCamera,
+    hyperCamera,
+    gl,
+  ]);
 
   let transitioning = useStore((state) => state.transitioning);
   let currentScene = useStore((state) => state.currentScene);
   let nextScene = useStore((state) => state.nextScene);
-
-  yearsScene.background = new THREE.Color(sceneSelectors[0].color);
-  circuitScene.background = new THREE.Color(sceneSelectors[1].color);
-  quantumScene.background = new THREE.Color(sceneSelectors[2].color);
-  hyperloopScene.background = new THREE.Color(sceneSelectors[3].color);
-
-  const pmremGenerator = new THREE.PMREMGenerator(gl);
-  pmremGenerator.compileEquirectangularShader();
-
-  new RGBELoader()
-    .setDataType(THREE.UnsignedByteType)
-    //.setPath('textures/equirectangular/')
-    .load('skySphere.hdr', function (hdrEquirect) {
-      const hdrCubeRenderTarget = pmremGenerator.fromEquirectangular(
-        hdrEquirect,
-      );
-      hdrEquirect.dispose();
-
-      yearsScene.environment = hdrCubeRenderTarget.texture;
-      circuitScene.environment = hdrCubeRenderTarget.texture;
-      quantumScene.environment = hdrCubeRenderTarget.texture;
-      hyperloopScene.environment = hdrCubeRenderTarget.texture;
-    });
 
   useFrame((state) => {
     if (controls.current) {
@@ -203,26 +223,28 @@ function Compositor({ sceneCamera, maskCamera }) {
     state.gl.clear();
 
     if (bgComposer.current) {
-      bgComposer.current.render(
-        sceneSelectors[currentScene].scene,
-        sceneCamera,
-      );
+      bgComposer.current.render(fgScene, sceneSelectors[currentScene].camera);
     }
     if (fgComposer.current) {
       if (transitioning) {
-        fgComposer.current.render(sceneSelectors[nextScene].scene, sceneCamera);
+        fgComposer.current.render(bgScene, sceneSelectors[nextScene].camera);
       }
     }
     if (maskComposer.current) {
-      maskComposer.current.render(fgMask, maskCamera);
+      maskComposer.current.render(fgMask, camera);
     }
-  });
+  }, 2);
+
+  //const params = useMemo(
+  //  () => ({ focus: 50, aperture: 0.005, maxblur: 0.018 }),
+  //  [],
+  //);
 
   return (
     <>
       <orbitControls
         ref={controls}
-        args={[sceneCamera, gl.domElement]}
+        args={[sceneSelectors[currentScene].camera, gl.domElement]}
         enableDamping={true}
         enableZoom={false}
         maxAzimuthAngle={Math.PI / 4}
@@ -234,14 +256,8 @@ function Compositor({ sceneCamera, maskCamera }) {
 
       {/** PORTALS */}
       {createPortal(<MaskPlane />, fgMask)}
-      {createPortal(
-        sceneSelectors[nextScene].environment,
-        sceneSelectors[nextScene].scene,
-      )}
-      {createPortal(
-        sceneSelectors[currentScene].environment,
-        sceneSelectors[currentScene].scene,
-      )}
+      {createPortal(sceneSelectors[nextScene].environment, bgScene)}
+      {createPortal(sceneSelectors[currentScene].environment, fgScene)}
 
       {/** FOREGROUND PORTAL EFFECTS */}
       <effectComposer
@@ -251,9 +267,17 @@ function Compositor({ sceneCamera, maskCamera }) {
       >
         <renderPass
           attachArray="passes"
-          args={[sceneSelectors[nextScene].scene, sceneCamera]}
+          args={[bgScene, sceneSelectors[nextScene].camera]}
         />
         <shaderPass attachArray="passes" args={[CopyShader]} />
+        {/*<bokehPass
+          attachArray="passes"
+          args={[
+            bgScene,
+            sceneSelectors[nextScene].camera,
+            params,
+          ]}
+        />*/}
       </effectComposer>
 
       {/** BACKGROUND PORTAL EFFECTS */}
@@ -264,26 +288,29 @@ function Compositor({ sceneCamera, maskCamera }) {
       >
         <renderPass
           attachArray="passes"
-          args={[sceneSelectors[currentScene].scene, sceneCamera]}
+          args={[fgScene, sceneSelectors[currentScene].camera]}
         />
+
         <shaderPass attachArray="passes" args={[CopyShader]} />
+        {/*<bokehPass
+          attachArray="passes"
+          args={[
+            fgScene,
+            sceneSelectors[currentScene].camera,
+            params,
+          ]}
+        />*/}
       </effectComposer>
 
       {/** COMPOSIT THE SCENE */}
       <effectComposer ref={maskComposer} args={[gl, maskRenderTarget]}>
         <clearPass attachArray="passes" />
         {/** BACKGROUND */}
-        <texturePass attachArray="passes" args={[bgRenderTarget.texture]} />\
+        <texturePass attachArray="passes" args={[bgRenderTarget.texture]} />
         {/** FOREGROUND */}
-        <maskPass attachArray="passes" args={[fgMask, maskCamera]} />
+        <maskPass attachArray="passes" args={[fgMask, camera]} />
         <texturePass attachArray="passes" args={[fgRenderTarget.texture]} />
         <clearMaskPass attachArray="passes" />
-        <shaderPass
-          attachArray="passes"
-          args={[FXAAShader]}
-          uniforms-resolution-value={[1 / size.width, 1 / size.height]}
-          renderToScreen
-        />
         <shaderPass attachArray="passes" args={[CopyShader]} renderToScreen />
       </effectComposer>
     </>
